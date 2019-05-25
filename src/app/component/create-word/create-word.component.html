@@ -1,0 +1,23 @@
+<div class="search">
+  <div class="search-condition">
+    <mat-form-field>
+      <input matInput [(ngModel)]="searchWord" (keyup.enter)="onAddWordToWordList(searchWord)" (blur)="onAddWordToWordList(searchWord)" placeholder="検索文字 (Enterで追加)">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput appMyCheckNumber type="number" [(ngModel)]="searchNumber" (input)="onDecideSearchNumber(searchNumber)" placeholder="検索文字数 (入力数字で確定)">
+    </mat-form-field>
+  </div>
+
+  <div class="search-word-list" *ngIf="wordList.length !==0">
+    <mat-list>
+      <h3 mat-subheader class="list-title">検索文字一覧</h3>
+      <mat-list-item class="word-list" *ngFor="let word of wordList; let i = index">
+        <input mat-line matInput [(ngModel)]="word" (keyup.enter)="onChangeWordInWordList(word,i)" (blur)="onChangeWordInWordList(word,i)">
+        <mat-icon class="delete" (click)="onDeleteWordFromWordList(word, i)">delete</mat-icon>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+</div>

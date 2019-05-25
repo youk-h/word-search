@@ -1,0 +1,53 @@
+.search-condition {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.search-word-list {
+  display: flex;
+}
+
+.list-title {
+  color: #33a;
+  font-size: 16px;
+}
+
+.word-list {
+  color: #33a;
+}
+
+.delete {
+  color: #888;
+  cursor: pointer;
+}
+
+.mat-list {
+  margin-bottom: 2vh;
+}
+
+// .search {
+//   display: flex;
+//   flex-direction: row;
+// }
+
+// .search-condition {
+//   display: flex;
+//   flex-direction: column;
+//   width: 40%;
+// }
+
+// .search-word-list {
+//   display: flex;
+//   margin-left: 3vw;
+// }
+
+// .list-title {
+//   color: #33a;
+//   font-size: 16px;
+// }
+
+// .word-list {
+//   color: #088;
+//   margin-left: 1vw;
+// }
