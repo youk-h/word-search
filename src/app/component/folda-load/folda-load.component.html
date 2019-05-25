@@ -1,0 +1,21 @@
+<div class="load-folda" *ngIf="!loading">
+  <input mat-input type="file" multiple webkitdirectory style="display: none" #fileInput accept="image/*" (change)="onLoadFiles($event.target.files)" />
+  <button mat-raised-button color="primary" class="file-select-button" (click)="onClickFileInputButton()">
+    <mat-icon>attach_file</mat-icon>
+    ファイルを選択
+  </button>
+</div>
+
+<mat-progress-bar class="progress-bar" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+
+<div class="result">
+  読み込み結果
+  <div class="text">
+    {{loaded.fileNumber}}ファイル
+  </div>
+
+  <div class="text">
+    {{loaded.charNumber}}文字
+  </div>
+</div>
