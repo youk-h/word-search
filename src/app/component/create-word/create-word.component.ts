@@ -24,7 +24,6 @@ export class CreateWordComponent implements OnInit, OnDestroy {
     this.subscription = this.wordList$.subscribe(
       (wordList) => {
         this.searchCondition.genRegExp(wordList);
-        console.log(this.searchCondition.regExp);
       },
       (error) => {
         console.log(error);
@@ -67,5 +66,11 @@ export class CreateWordComponent implements OnInit, OnDestroy {
 
   public inWordList(targetWord: string): boolean {
     return this.wordList.some((word: string) => word === targetWord);
+  }
+
+  public reset() {
+    this.wordList = [];
+    this.searchNumber = undefined;
+    this.searchWord = undefined;
   }
 }
