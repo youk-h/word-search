@@ -4,6 +4,7 @@
     <!-- <form [formGroup]="firstFormGroup"> -->
     <ng-template matStepLabel>検索条件</ng-template>
     <app-create-word></app-create-word>
+    <button mat-stroked-button color="warn" matStepperPrevious (click)="onResetSearchCondition()">リセット</button>
     <button mat-stroked-button color="primary" matStepperNext>入力完了</button>
     <!-- </form> -->
   </mat-step>
@@ -11,8 +12,9 @@
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>フォルダ読み込み</ng-template>
-      <app-folda-load></app-folda-load>
+      <app-load-folda></app-load-folda>
       <button mat-stroked-button color="accent" matStepperPrevious>戻る</button>
+      <button mat-stroked-button color="warn" (click)="onResetLoadFolda()">リセット</button>
       <button mat-stroked-button color="primary" matStepperNext>次へ</button>
     </form>
   </mat-step>
@@ -22,16 +24,26 @@
       <ng-template matStepLabel>文字検索</ng-template>
       <app-search-word></app-search-word>
       <button mat-stroked-button color="accent" matStepperPrevious>戻る</button>
-      <button mat-stroked-button color="primary" matStepperNext>完了</button>
+      <button mat-stroked-button color="warn" (click)="onResetSearchResult()">リセット</button>
+      <button mat-stroked-button color="primary" matStepperNext>次へ</button>
     </form>
   </mat-step>
 
   <mat-step [stepControl]="fourthFormGroup">
     <form [formGroup]="fourthFormGroup">
+      <ng-template matStepLabel>グラフ</ng-template>
+      <app-graph></app-graph>
+      <button mat-stroked-button color="accent" matStepperPrevious>戻る</button>
+      <button mat-stroked-button color="primary" matStepperNext>次へ</button>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="fifthFormGroup">
+    <form [formGroup]="fifthFormGroup">
       <ng-template matStepLabel>ダウンロード</ng-template>
       <app-download-file></app-download-file>
       <button mat-stroked-button color="accent" matStepperPrevious>戻る</button>
-      <button mat-stroked-button color="primary" (click)="stepper.reset()">リセット</button>
+      <button mat-stroked-button color="primary" (click)="stepper.reset(); onResetAll()">リセット</button>
     </form>
   </mat-step>
 
