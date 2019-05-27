@@ -5,11 +5,11 @@ import { from, of } from "rxjs";
 import { mergeMap, toArray, map } from "rxjs/operators";
 
 @Component({
-  selector: "app-folda-load",
-  templateUrl: "./folda-load.component.html",
-  styleUrls: ["../scss/reg-exp.scss", "./folda-load.component.scss"]
+  selector: "app-load-folda",
+  templateUrl: "./load-folda.component.html",
+  styleUrls: ["../scss/reg-exp.scss", "./load-folda.component.scss"]
 })
-export class FoldaLoadComponent implements DoCheck {
+export class LoadFoldaComponent implements DoCheck {
   @ViewChild("fileInput") fileInput;
   public loaded = { fileNumber: 0, charNumber: 0 };
   loading = false;
@@ -20,7 +20,8 @@ export class FoldaLoadComponent implements DoCheck {
 
   ngDoCheck() { }
 
-  public onLoadFiles(files: File[]): void {
+  public onLoadFiles(files: any): void {
+    files = this.fileService.convertObjectToArray(files);
     this.loading = true;
 
     from(files).pipe(
@@ -38,4 +39,7 @@ export class FoldaLoadComponent implements DoCheck {
     this.fileInput.nativeElement.click();
   }
 
+  public reset() {
+    this.loaded = { fileNumber: 0, charNumber: 0 };
+  }
 }

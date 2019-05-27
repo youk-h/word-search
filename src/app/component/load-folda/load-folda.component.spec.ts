@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FoldaLoadComponent } from './folda-load.component';
+import { LoadFoldaComponent } from './load-folda.component';
 
-describe('FoldaLoadComponent', () => {
-  let component: FoldaLoadComponent;
-  let fixture: ComponentFixture<FoldaLoadComponent>;
+describe('LoadFoldaComponent', () => {
+  let component: LoadFoldaComponent;
+  let fixture: ComponentFixture<LoadFoldaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FoldaLoadComponent ]
+      declarations: [LoadFoldaComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FoldaLoadComponent);
+    fixture = TestBed.createComponent(LoadFoldaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
