@@ -5,8 +5,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { MatStepperModule } from "@angular/material/stepper";
 
-// import { NgxChartsModule } from "@swimlane/ngx-charts";
-
 import { MY_ROUTES } from "./app.routing";
 import { HomePageModule } from "./pages/home-page/home-page.module";
 import { RegExpSearchModule } from "./pages/reg-exp-search/reg-exp-search.module";
@@ -23,7 +21,6 @@ import { MakeOutputDataService } from "./service/make-output-data/make-output-da
     FormsModule,
     BrowserAnimationsModule,
     MatStepperModule,
-    // NgxChartsModule,
     MY_ROUTES,
     HomePageModule,
     RegExpSearchModule,
