@@ -12,9 +12,11 @@ import {
   MatProgressBarModule,
 } from "@angular/material";
 
+import { GoogleChartsModule } from "angular-google-charts";
+
 import { RegExpSearchComponent } from "./reg-exp-search.component";
 import { SearchWordComponent } from "../../component/search-word/search-word.component";
-import { FoldaLoadComponent } from "../../component/folda-load/folda-load.component";
+import { LoadFoldaComponent } from "../../component/load-folda/load-folda.component";
 import { DownloadFileComponent } from "../../component/download-file/download-file.component";
 import { CreateWordComponent } from "../../component/create-word/create-word.component";
 import { GraphComponent } from "../../component/graph/grash.component";
@@ -25,8 +27,6 @@ import { SearchConditionService } from "../../service/search-condition/search-co
 
 import { CheckNumberDirective } from "../../directive/check-number.directive";
 import { MatStepperModule } from "@angular/material/stepper";
-
-// import { NgxChartsModule } from "@swimlane/ngx-charts";
 
 @NgModule({
   imports: [
@@ -42,12 +42,12 @@ import { MatStepperModule } from "@angular/material/stepper";
     MatListModule,
     MatIconModule,
     MatProgressBarModule,
-    // NgxChartsModule,
+    GoogleChartsModule.forRoot(),
   ],
   exports: [
     RegExpSearchComponent,
     SearchWordComponent,
-    FoldaLoadComponent,
+    LoadFoldaComponent,
     DownloadFileComponent,
     CreateWordComponent,
     CheckNumberDirective,
@@ -56,7 +56,7 @@ import { MatStepperModule } from "@angular/material/stepper";
   declarations: [
     RegExpSearchComponent,
     SearchWordComponent,
-    FoldaLoadComponent,
+    LoadFoldaComponent,
     DownloadFileComponent,
     CreateWordComponent,
     CheckNumberDirective,
