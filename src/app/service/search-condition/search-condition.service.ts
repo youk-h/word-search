@@ -20,6 +20,11 @@ export class SearchConditionService {
     this.searchNumber = num;
   }
 
+  public reset() {
+    this.regExp = undefined;
+    this.searchNumber = undefined;
+  }
+
 }
 
 export class GenerateRegExpService {
@@ -30,6 +35,10 @@ export class GenerateRegExpService {
   }
 
   public convertWordsToRegExp(words: string[]): RegExp {
+    if (Array.isArray(words) && !words.length) {
+      return undefined;
+    }
+
     const escapeWords = words.map((word) => this.escapeWhiteSpace(word));
 
     return new RegExp(escapeWords.join("|"), "gi");
