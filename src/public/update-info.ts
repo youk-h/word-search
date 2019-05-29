@@ -3,6 +3,10 @@ import { Info } from "src/app/component/update-info/update-info.component.i";
 
 export const infos: Info[] = [
   {
+    date: "2019/05/26",
+    content: "検索ページのUIを変更しました。",
+  },
+  {
     date: "2019/03/13",
     content: "グラフを修正し、文字ごとの件数を正確に求めることができるようになりました",
   },
