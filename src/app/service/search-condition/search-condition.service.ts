@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class SearchConditionService {
+  wordList: string[] = [];
   regExp: RegExp;
   searchNumber: number;
 
@@ -21,6 +22,7 @@ export class SearchConditionService {
   }
 
   public reset() {
+    this.wordList = [];
     this.regExp = undefined;
     this.searchNumber = undefined;
   }

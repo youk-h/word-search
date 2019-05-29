@@ -17,13 +17,15 @@ export class CreateWordComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   public constructor(
-    private searchCondition: SearchConditionService,
+    private searchConditionSvc: SearchConditionService,
   ) { }
 
   ngOnInit() {
     this.subscription = this.wordList$.subscribe(
       (wordList) => {
-        this.searchCondition.genRegExp(wordList);
+        this.wordList = wordList;
+        this.searchConditionSvc.genRegExp(wordList);
+        console.log(this.searchConditionSvc.regExp);
       },
       (error) => {
         console.log(error);
@@ -39,8 +41,8 @@ export class CreateWordComponent implements OnInit, OnDestroy {
 
   public onAddWordToWordList(word: string) {
     if (word && !this.inWordList(word)) {
-      this.wordList.push(word);
-      this.wordList$.next(this.wordList);
+      this.searchConditionSvc.wordList.push(word);
+      this.wordList$.next(this.searchConditionSvc.wordList);
     } else {
       console.log("this word has already registered");
     }
@@ -49,19 +51,19 @@ export class CreateWordComponent implements OnInit, OnDestroy {
 
   public onChangeWordInWordList(word: string, i: number) {
     if (word !== this.wordList[i]) {
-      this.wordList[i] = word;
-      this.wordList$.next(this.wordList);
+      this.searchConditionSvc.wordList[i] = word;
+      this.wordList$.next(this.searchConditionSvc.wordList);
     }
   }
 
   public onDeleteWordFromWordList(deleteWord: string) {
-    this.wordList = this.wordList.filter((word) => word !== deleteWord);
-    this.wordList$.next(this.wordList);
+    this.searchConditionSvc.wordList = this.searchConditionSvc.wordList.filter((word) => word !== deleteWord);
+    this.wordList$.next(this.searchConditionSvc.wordList);
   }
 
   public onDecideSearchNumber(num: number) {
-    this.searchCondition.decideSearchNumber(num);
-    console.log(this.searchCondition.searchNumber);
+    this.searchConditionSvc.decideSearchNumber(num);
+    console.log(this.searchConditionSvc.searchNumber);
   }
 
   public inWordList(targetWord: string): boolean {
