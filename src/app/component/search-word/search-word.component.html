@@ -1,0 +1,13 @@
+<div class="search-word" *ngIf="!searching">
+  <button mat-raised-button color="primary" (click)="onSearch()">
+    <mat-icon>search</mat-icon>
+    検索開始
+  </button>
+</div>
+
+<div class="result">
+  検索結果
+  <div>
+    {{searchedNumber}}件
+  </div>
+</div>

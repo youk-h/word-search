@@ -7,7 +7,7 @@ import { mergeMap, toArray, map } from "rxjs/operators";
 @Component({
   selector: "app-load-folda",
   templateUrl: "./load-folda.component.html",
-  styleUrls: ["../scss/reg-exp.scss", "./load-folda.component.scss"]
+  styleUrls: ["./load-folda.component.scss"]
 })
 export class LoadFoldaComponent implements DoCheck {
   @ViewChild("fileInput") fileInput;

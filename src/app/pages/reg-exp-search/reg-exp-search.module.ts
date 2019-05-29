@@ -19,7 +19,7 @@ import { SearchWordComponent } from "../../component/search-word/search-word.com
 import { LoadFoldaComponent } from "../../component/load-folda/load-folda.component";
 import { DownloadFileComponent } from "../../component/download-file/download-file.component";
 import { CreateWordComponent } from "../../component/create-word/create-word.component";
-import { GraphComponent } from "../../component/graph/grash.component";
+import { GraphComponent } from "../../component/graph/graph.component";
 
 import { FileManagementService } from "../../service/file-management/file-management.service";
 import { MakeOutputDataService } from "../../service/make-output-data/make-output-data.service";
