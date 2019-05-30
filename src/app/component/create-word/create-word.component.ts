@@ -9,12 +9,12 @@ import { SearchConditionService } from "../../service/search-condition/search-co
   styleUrls: ["./create-word.component.scss"],
 })
 export class CreateWordComponent implements OnInit, OnDestroy {
-  searchWord = "";
+  searchWord;
   searchNumber: number;
   wordList: string[] = [];
 
-  private wordList$ = new Subject<string[]>();
-  private subscription: Subscription;
+  public wordList$ = new Subject<string[]>();
+  public subscription: Subscription;
 
   public constructor(
     private searchConditionSvc: SearchConditionService,
@@ -24,7 +24,7 @@ export class CreateWordComponent implements OnInit, OnDestroy {
     this.subscription = this.wordList$.subscribe(
       (wordList) => {
         this.wordList = wordList;
-        this.searchConditionSvc.genRegExp(wordList);
+        this.searchConditionSvc.genRegExp(this.wordList);
         console.log(this.searchConditionSvc.regExp);
       },
       (error) => {
@@ -40,7 +40,7 @@ export class CreateWordComponent implements OnInit, OnDestroy {
   }
 
   public onAddWordToWordList(word: string) {
-    if (word && !this.inWordList(word)) {
+    if (word && !this.searchConditionSvc.inWordList(word)) {
       this.searchConditionSvc.wordList.push(word);
       this.wordList$.next(this.searchConditionSvc.wordList);
     } else {
@@ -49,9 +49,13 @@ export class CreateWordComponent implements OnInit, OnDestroy {
     this.searchWord = null;
   }
 
-  public onChangeWordInWordList(word: string, i: number) {
-    if (word !== this.wordList[i]) {
-      this.searchConditionSvc.wordList[i] = word;
+  public onChangeWordInWordList(changeWord: string, i: number) {
+    if (this.searchConditionSvc.wordList.some((word) => changeWord === word)) {
+      return;
+    }
+
+    if (changeWord !== this.wordList[i]) {
+      this.searchConditionSvc.wordList[i] = changeWord;
       this.wordList$.next(this.searchConditionSvc.wordList);
     }
   }
@@ -64,10 +68,6 @@ export class CreateWordComponent implements OnInit, OnDestroy {
   public onDecideSearchNumber(num: number) {
     this.searchConditionSvc.decideSearchNumber(num);
     console.log(this.searchConditionSvc.searchNumber);
-  }
-
-  public inWordList(targetWord: string): boolean {
-    return this.wordList.some((word: string) => word === targetWord);
   }
 
   public reset() {
