@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 
-import { FileManagementService } from "../../service/file-management/file-management.service";
+import { loadFileService } from "../../service/load-file/load-file.service";
 import { SearchConditionService } from "../../service/search-condition/search-condition.service";
 import { SearchedNumber } from "../../service/analyze-texts/analyze-texts.service.i";
 import { AnalyzeTextsService } from "../../service/analyze-texts/analyze-texts.service";
@@ -14,21 +14,18 @@ export class SearchWordComponent {
   public searchedNumber: SearchedNumber = 0;
 
   public constructor(
-    private fileService: FileManagementService,
+    private fileService: loadFileService,
     private searchCondtionService: SearchConditionService,
     private analyzeTextSvc: AnalyzeTextsService,
-    // private searchService: SearchTextsService,
   ) { }
 
   public onSearch() {
-    if (!this.checkSeaechFlow(this.fileService, this.searchCondtionService)) { return; }
+    if (!this.checkConditionToSearch(this.fileService, this.searchCondtionService)) { return; }
 
     this.searchedNumber = this.analyzeTextSvc.analyzeTextOfFiles(this.fileService.loadFiles, this.searchCondtionService.regExp);
-    // this.graphData = this.searchService.makeGraphData(this.dataService.loadedFiles);
-    // this.dataService.graphData$.next(this.graphData);
   }
 
-  private checkSeaechFlow(fileService: FileManagementService, searchCondition: SearchConditionService) {
+  public checkConditionToSearch(fileService: loadFileService, searchCondition: SearchConditionService) {
     if (!searchCondition.regExp) {
       return window.alert("ステップ１で検索文字を指定してください");
     }
