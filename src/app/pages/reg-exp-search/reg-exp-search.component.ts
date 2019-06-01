@@ -6,8 +6,9 @@ import { LoadFoldaComponent } from "../../component/load-folda/load-folda.compon
 import { SearchWordComponent } from "../../component/search-word/search-word.component";
 
 import { SearchConditionService } from "../../service/search-condition/search-condition.service";
-import { FileManagementService } from "../../service/file-management/file-management.service";
+import { loadFileService } from "../../service/load-file/load-file.service";
 import { AnalyzeTextsService } from "../../service/analyze-texts/analyze-texts.service";
+import { MakeGraphService } from "src/app/service/make-graph/make-graph.service";
 
 @Component({
   selector: "app-reg-exp-search",
@@ -28,8 +29,9 @@ export class RegExpSearchComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private searchConditionSvc: SearchConditionService,
-    private fileManagementSvc: FileManagementService,
+    private fileManagementSvc: loadFileService,
     private analyzeTextSvc: AnalyzeTextsService,
+    private makeGraphSvc: MakeGraphService,
   ) { }
 
   ngOnInit() {
@@ -63,6 +65,7 @@ export class RegExpSearchComponent implements OnInit {
   public onResetSearchResult() {
     this.searchWordComponent.reset();
     this.analyzeTextSvc.reset();
+    this.makeGraphSvc.reset();
   }
 
   public onResetAll() {
