@@ -1,32 +1,40 @@
 // <reference path="./file-reader-sync.d.ts" />
 import { Injectable } from "@angular/core";
-import { LoadFile } from "./file-management.i";
+
 import { from, Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, mergeMap, toArray } from "rxjs/operators";
+
 import * as encoding from "encoding-japanese";
+
+import { LoadFile } from "./load-file.service.i";
 
 @Injectable({
   providedIn: "root"
 })
-export class FileManagementService {
+export class loadFileService {
   public loadFiles: LoadFile[] = [];
-  public loaded = { fileNumber: 0, charNumber: 0 };
 
   constructor() { }
 
-  public loadText(file: File): Observable<any> {
-    return from(this.loadTextFromFile(file)).pipe(
+  public loadTextOfEachFiles$(files: File[]): Observable<LoadFile[]> {
+    return from(files).pipe(
+      mergeMap((file: File) => this.loadTextOfFile$(file).pipe(
+        map((text) => this.addLoadTextToFile(file, text)),
+      )),
+      toArray(),
+      map((loadFiles: LoadFile[]) => this.loadFiles = loadFiles),
+    );
+  }
+
+  public loadTextOfFile$(file: File): Observable<string> {
+    return from(this.loadArrayBuffer(file)).pipe(
       map((arrayBuffer: ArrayBuffer) => {
-        const text = this.convertAnyCharCodeToUnicode(arrayBuffer);
-        this.loadFiles.push(this.addLoadTextToFile(file, text));
-        this.loaded.fileNumber = this.loadFiles.length;
-        this.loaded.charNumber += text.length;
-        return this.loaded;
+        return this.convertArrayBufferToUnicodeString(arrayBuffer);
       }),
     );
   }
 
-  public loadTextFromFile(file: File): Promise<string | ArrayBuffer> {
+  public loadArrayBuffer(file: File): Promise<string | ArrayBuffer> {
     const reader = new FileReader();
     reader.readAsArrayBuffer(file);
 
@@ -37,7 +45,7 @@ export class FileManagementService {
 
   }
 
-  convertAnyCharCodeToUnicode(arrayBuffer: ArrayBuffer): string {
+  convertArrayBufferToUnicodeString(arrayBuffer: ArrayBuffer): string {
     const buffer = Buffer.from(arrayBuffer);
     const charCodes = encoding.convert(buffer, "UNICODE");
     return encoding.codeToString(charCodes);
@@ -47,7 +55,7 @@ export class FileManagementService {
     return { ...file, loadText: text };
   }
 
-  public convertObjectToArray(obj: object): Array<any> {
+  public convertObjectToArray(obj: { [key: number]: File }): File[] {
     const array = [];
 
     Object.keys(obj).forEach((key) => {
@@ -59,6 +67,5 @@ export class FileManagementService {
 
   public reset() {
     this.loadFiles = [];
-    this.loaded = { fileNumber: 0, charNumber: 0 };
   }
 }
