@@ -1,34 +1,19 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Component, DoCheck } from "@angular/core";
 
-import { Graph } from "src/app/service/make-graph/graph.i";
+import { Graph } from "src/app/service/make-graph/make-graph.service.i";
+import { MakeGraphService } from "src/app/service/make-graph/make-graph.service";
 
 @Component({
   selector: "app-graph",
   templateUrl: "./graph.component.html",
   styleUrls: ["./graph.component.scss"]
 })
-export class GraphComponent implements OnInit, OnDestroy {
-  public graphData = [];
+export class GraphComponent implements DoCheck {
+  public graphData: Graph = [];
 
-  private subscription: Subscription;
+  constructor(private makeGraphSvc: MakeGraphService) { }
 
-  constructor() { }
-
-  ngOnInit() {
-    // this.subscription = this.dataService.graphData$.subscribe(
-    //   (graphData: Graph[]) => {
-    //     graphData.forEach((data) => {
-    //       this.graphData.push({ name: `${data.name}`, value: `${data.value}` });
-    //     });
-    //   },
-    //   (error) => console.log(error),
-    // );
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+  ngDoCheck() {
+    this.graphData = this.makeGraphSvc.graphData;
   }
 }
