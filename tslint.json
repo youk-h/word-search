@@ -56,11 +56,7 @@
     ],
     "object-literal-sort-keys": false,
     "ordered-imports": false,
-    "quotemark": [
-      true,
-      "single"
-    ],
-    "trailing-comma": false,
+    "trailing-comma": true,
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
