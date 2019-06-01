@@ -1,43 +1,42 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 
 import { MakeOutputDataService } from "../../service/make-output-data/make-output-data.service";
-import { Subject, Subscription } from "rxjs";
+import { ExportFileService } from "../../service/export-file/export-file.service";
+import { ExtractTextsService } from "../../service/extract-texts/extract-texts.service";
 
 @Component({
   selector: "app-download-file",
   templateUrl: "./download-file.component.html",
   styleUrls: ["./download-file.component.scss"],
 })
-export class DownloadFileComponent implements OnInit, OnDestroy {
+export class DownloadFileComponent implements OnInit {
+  @ViewChild("downloadFile") downloadFile;
   public saveFileName: string;
 
-  private fileName$: Subject<string> = new Subject();
-  private subscription: Subscription;
-
   constructor(
-    private editWordService: MakeOutputDataService,
+    private exportFileSvc: ExportFileService,
+    private makeOutputSvc: MakeOutputDataService,
+    private extractTextsSvc: ExtractTextsService,
   ) { }
 
-  ngOnInit() {
-    // this.subscription = this.fileName$.subscribe(
-    //   (name) => this.state = name ? status.Normal : status.NG,
-    //   (error) => console.log(error),
-    // );
-  }
+  ngOnInit() { }
 
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+  public onDecideFileName(fileName: string) {
+    if (fileName) {
+      this.saveFileName = this.exportFileSvc.formatFileName(fileName);
     }
   }
 
-  public onDecideFileName(e: any) {
-    this.fileName$.next(e.target.value);
+  public onClickFileDownloadButton() {
+    this.downloadFile.nativeElement.click();
   }
 
   public onDownload(event: any) {
-    // const exportData: string = this.editWordService.makeOutputData(this.dataService.searchedFiles);
-    // const blob: Blob = new Blob([exportData], { type: "application/x-msdownload" });
-    // event.currentTarget.href = window.URL.createObjectURL(blob);
+    if (this.extractTextsSvc.extractedTexts.length === 0) {
+      return window.alert("検索後に結果をダウンロードできます");
+    }
+    const exportData: string = this.makeOutputSvc.makeOutputData(this.extractTextsSvc.extractedTexts);
+    const blob: Blob = new Blob([exportData], { type: "application/x-msdownload" });
+    event.currentTarget.href = window.URL.createObjectURL(blob);
   }
 }

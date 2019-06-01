@@ -1,0 +1,15 @@
+<div class="file-name">
+  <mat-form-field>
+    <input matInput [(ngModel)]="saveFileName" placeholder="テキストファイル名(入力文字で確定)" (keyup.enter)="onDecideFileName(saveFileName)" (blur)="onDecideFileName(saveFileName)">
+  </mat-form-field>
+</div>
+
+<div class="download-file">
+  <button mat-raised-button color="primary" (click)="onClickFileDownloadButton()">
+    <mat-icon>get_app</mat-icon>
+    ダウンロード
+  </button>
+</div>
+
+<a class="downloader" #downloadFile style="display: none" name="downloader" [download]="saveFileName" (click)="onDownload($event)">
+</a>
