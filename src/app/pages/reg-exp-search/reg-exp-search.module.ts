@@ -35,7 +35,6 @@ import { LoadFoldaComponent } from "../../component/load-folda/load-folda.compon
 import { DownloadFileComponent } from "../../component/download-file/download-file.component";
 import { CreateWordComponent } from "../../component/create-word/create-word.component";
 import { GraphComponent } from "../../component/graph/graph.component";
-import { ComplementComponent } from "../../component/complement/complement.component";
 
 import { CheckNumberDirective } from "../../directive/check-number.directive";
 
@@ -61,7 +60,6 @@ import { CheckNumberDirective } from "../../directive/check-number.directive";
     CreateWordComponent,
     CheckNumberDirective,
     GraphComponent,
-    ComplementComponent,
   ],
 })
 export class RegExpSearchModule { }
