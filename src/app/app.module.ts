@@ -11,7 +11,7 @@ import { RegExpSearchModule } from "./pages/reg-exp-search/reg-exp-search.module
 import { WordClassSearchModule } from "./pages/word-class-search/word-class-search.module";
 
 import { AppComponent } from "./app.component";
-import { FileManagementService } from "./service/file-management/file-management.service";
+import { loadFileService } from "./service/load-file/load-file.service";
 import { GenerateRegExpService, SearchConditionService } from "./service/search-condition/search-condition.service";
 import { MakeOutputDataService } from "./service/make-output-data/make-output-data.service";
 
@@ -32,7 +32,7 @@ import { MakeOutputDataService } from "./service/make-output-data/make-output-da
   providers: [
     GenerateRegExpService,
     SearchConditionService,
-    FileManagementService,
+    loadFileService,
     MakeOutputDataService,
   ],
   bootstrap: [AppComponent]
