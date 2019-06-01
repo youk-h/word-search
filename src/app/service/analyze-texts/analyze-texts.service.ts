@@ -1,43 +1,39 @@
 import { Injectable } from "@angular/core";
 
-import { LoadFile } from "../file-management/file-management.i";
-import { SearchedTexts } from "./analyze-texts.service.i";
-import { Match, SearchedNumber, Text } from "./analyze-texts.service.i";
+import { LoadFile } from "../load-file/load-file.service.i";
+import { Match, SearchedNumber } from "./analyze-texts.service.i";
 
-import { SearchTextsService } from "../search-texts/search-texts.service";
+import { ExtractTextsService, SearchMatchService } from "../extract-texts/extract-texts.service";
+import { MakeGraphService } from "../make-graph/make-graph.service";
+import { SearchConditionService } from "../search-condition/search-condition.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class AnalyzeTextsService {
-  public searchedTexts: SearchedTexts = [];
-
   constructor(
-    private searchTextSvc: SearchTextsService,
+    private extractTextSvc: ExtractTextsService,
+    private searchConditionSvc: SearchConditionService,
+    private makeGraphSvc: MakeGraphService,
   ) { }
 
   public analyzeTextOfFiles(files: LoadFile[], regExp: RegExp): SearchedNumber {
-    const texts: Text[] = this.extractTextFromFiles(files);
+    this.makeGraphSvc.initializeGraphData(this.searchConditionSvc.wordList);
 
-    texts.forEach((text) => {
-      const matches: Match[] = this.searchTextSvc.searchMatchesFromText(text, regExp);
-      console.log(matches);
-      this.searchedTexts = this.searchedTexts.concat(this.searchTextSvc.searchTexts(text, matches));
-      // this.graphData = this.makeGraphService.makeGraphData(text, matches);
+    files.forEach((file: LoadFile) => {
+      const searchMatch = new SearchMatchService();
+      const matches: Match[] = searchMatch.searchMatch(file.loadText, regExp);
+
+      this.extractTextSvc.extractTextsFromFile(file, matches);
+      this.makeGraphSvc.makeGraphData(matches);
     });
 
-    return this.makeSearchedResult(this.searchedTexts);
-  }
-
-  public makeSearchedResult(texts: SearchedTexts): SearchedNumber {
-    return texts.length;
-  }
-
-  public extractTextFromFiles(files: LoadFile[]): Text[] {
-    return files.map((file) => file.loadText);
+    this.makeGraphSvc.addAllNumberToGraph(this.extractTextSvc.extractedTexts);
+    return this.extractTextSvc.extractedTexts.length;
   }
 
   public reset() {
-    this.searchedTexts = [];
+    this.extractTextSvc.extractedTexts = [];
+    this.makeGraphSvc.graphData = [];
   }
 }
