@@ -8,9 +8,10 @@ export class CheckNumberDirective {
 
   @HostListener("input", ["$event"]) onInput(event) {
     const word = event.data;
-    if (/[０-９]/.test(word)) {
-      return event.target.value = String.fromCharCode(word.charCodeAt(0) - 65248);
+    if (/[(０-９)+]/.test(word)) {
+      window.alert("半角数字で入力してください")
     }
+
     if (word && /[^\d]/.test(word.toString())) {
       console.log(`${event.data} is not number`);
       event.target.value = null;
