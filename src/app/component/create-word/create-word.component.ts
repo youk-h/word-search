@@ -25,7 +25,6 @@ export class CreateWordComponent implements OnInit, OnDestroy {
       (wordList) => {
         this.wordList = wordList;
         this.searchConditionSvc.genRegExp(this.wordList);
-        console.log(this.searchConditionSvc.regExp);
       },
       (error) => {
         console.log(error);
@@ -68,6 +67,10 @@ export class CreateWordComponent implements OnInit, OnDestroy {
   public onDecideSearchNumber(num: number) {
     this.searchConditionSvc.decideSearchNumber(num);
     console.log(this.searchConditionSvc.searchNumber);
+  }
+
+  public createWordComplement(): string {
+    return "aho";
   }
 
   public reset() {

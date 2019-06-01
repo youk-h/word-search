@@ -1,4 +1,3 @@
-<div class="search">
   <div class="search-condition">
     <mat-form-field>
       <input matInput [(ngModel)]="searchWord" (keyup.enter)="onAddWordToWordList(searchWord)" (blur)="onAddWordToWordList(searchWord)" placeholder="検索文字 (Enterで追加)">
@@ -20,4 +19,4 @@
     </mat-list>
   </div>
 
-</div>
+  <app-complement class="complement" [complement]="createWordComplement()"></app-complement>
