@@ -1,36 +1,33 @@
-import { Component, DoCheck, ViewChild } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 
-import { FileManagementService } from "../../service/file-management/file-management.service";
-import { from, of } from "rxjs";
-import { mergeMap, toArray, map } from "rxjs/operators";
+import { loadFileService } from "../../service/load-file/load-file.service";
 
 @Component({
   selector: "app-load-folda",
   templateUrl: "./load-folda.component.html",
   styleUrls: ["./load-folda.component.scss"]
 })
-export class LoadFoldaComponent implements DoCheck {
+export class LoadFoldaComponent {
   @ViewChild("fileInput") fileInput;
-  public loaded = { fileNumber: 0, charNumber: 0 };
+  public loadResult = { fileNumber: 0, charNumber: 0 };
   loading = false;
 
   constructor(
-    private fileService: FileManagementService,
+    private fileService: loadFileService,
   ) { }
-
-  ngDoCheck() { }
 
   public onLoadFiles(files: any): void {
     files = this.fileService.convertObjectToArray(files);
     this.loading = true;
 
-    from(files).pipe(
-      mergeMap((file: File) => this.fileService.loadText(file).pipe(
-        map((loaded) => this.loaded = loaded),
-      )),
-      toArray(),
-    ).subscribe(
-      () => this.loading = false,
+    this.fileService.loadTextOfEachFiles$(files).subscribe(
+      (loadFiles) => {
+        this.loadResult = {
+          fileNumber: loadFiles.length,
+          charNumber: loadFiles.reduce((charNum, file) => charNum + file.loadText.length, 0)
+        };
+        this.loading = false;
+      },
       (error) => console.log(error),
     );
   }
@@ -40,6 +37,6 @@ export class LoadFoldaComponent implements DoCheck {
   }
 
   public reset() {
-    this.loaded = { fileNumber: 0, charNumber: 0 };
+    this.loadResult = { fileNumber: 0, charNumber: 0 };
   }
 }
