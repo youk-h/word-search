@@ -17,6 +17,10 @@ export class SearchConditionService {
     this.regExp = this.generateRegExp.convertWordsToRegExp(words);
   }
 
+  public inWordList(targetWord: string): boolean {
+    return this.wordList.some((word: string) => word === targetWord);
+  }
+
   public decideSearchNumber(num: number) {
     this.searchNumber = num;
   }
