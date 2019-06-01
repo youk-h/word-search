@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { Text } from "./edit-word.i";
+import { Text } from "./make-output.service.i";
 
 @Injectable({
   providedIn: "root",

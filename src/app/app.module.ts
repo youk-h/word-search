@@ -8,7 +8,6 @@ import { MatStepperModule } from "@angular/material/stepper";
 import { MY_ROUTES } from "./app.routing";
 import { HomePageModule } from "./pages/home-page/home-page.module";
 import { RegExpSearchModule } from "./pages/reg-exp-search/reg-exp-search.module";
-import { WordClassSearchModule } from "./pages/word-class-search/word-class-search.module";
 
 import { AppComponent } from "./app.component";
 import { loadFileService } from "./service/load-file/load-file.service";
@@ -24,7 +23,6 @@ import { MakeOutputDataService } from "./service/make-output-data/make-output-da
     MY_ROUTES,
     HomePageModule,
     RegExpSearchModule,
-    WordClassSearchModule,
   ],
   declarations: [
     AppComponent,
