@@ -1,18 +1,33 @@
-import { NgModule } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CommonModule } from "@angular/common";
+import {
+  NgModule,
+} from "@angular/core";
+
+import {
+  FormsModule,
+  ReactiveFormsModule
+} from "@angular/forms";
+
+import {
+  CommonModule,
+} from "@angular/common";
+
 import {
   MatButtonModule,
   MatFormFieldModule,
   MatInputModule,
-  MatRippleModule,
-  MatSelectModule,
   MatListModule,
   MatIconModule,
   MatProgressBarModule,
+
 } from "@angular/material";
 
-import { GoogleChartsModule } from "angular-google-charts";
+import {
+  MatStepperModule,
+} from "@angular/material/stepper";
+
+import {
+  GoogleChartsModule,
+} from "angular-google-charts";
 
 import { RegExpSearchComponent } from "./reg-exp-search.component";
 import { SearchWordComponent } from "../../component/search-word/search-word.component";
@@ -20,13 +35,9 @@ import { LoadFoldaComponent } from "../../component/load-folda/load-folda.compon
 import { DownloadFileComponent } from "../../component/download-file/download-file.component";
 import { CreateWordComponent } from "../../component/create-word/create-word.component";
 import { GraphComponent } from "../../component/graph/graph.component";
-
-import { FileManagementService } from "../../service/file-management/file-management.service";
-import { MakeOutputDataService } from "../../service/make-output-data/make-output-data.service";
-import { SearchConditionService } from "../../service/search-condition/search-condition.service";
+import { ComplementComponent } from "../../component/complement/complement.component";
 
 import { CheckNumberDirective } from "../../directive/check-number.directive";
-import { MatStepperModule } from "@angular/material/stepper";
 
 @NgModule({
   imports: [
@@ -37,21 +48,10 @@ import { MatStepperModule } from "@angular/material/stepper";
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatRippleModule,
-    MatSelectModule,
     MatListModule,
     MatIconModule,
     MatProgressBarModule,
     GoogleChartsModule.forRoot(),
-  ],
-  exports: [
-    RegExpSearchComponent,
-    SearchWordComponent,
-    LoadFoldaComponent,
-    DownloadFileComponent,
-    CreateWordComponent,
-    CheckNumberDirective,
-    GraphComponent,
   ],
   declarations: [
     RegExpSearchComponent,
@@ -61,11 +61,7 @@ import { MatStepperModule } from "@angular/material/stepper";
     CreateWordComponent,
     CheckNumberDirective,
     GraphComponent,
-  ],
-  providers: [
-    SearchConditionService,
-    FileManagementService,
-    MakeOutputDataService,
+    ComplementComponent,
   ],
 })
 export class RegExpSearchModule { }
