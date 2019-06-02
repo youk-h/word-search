@@ -8,7 +8,7 @@ import { SearchWordComponent } from "../../component/search-word/search-word.com
 import { SearchConditionService } from "../../service/search-condition/search-condition.service";
 import { loadFileService } from "../../service/load-file/load-file.service";
 import { AnalyzeTextsService } from "../../service/analyze-texts/analyze-texts.service";
-import { MakeGraphService } from "src/app/service/make-graph/make-graph.service";
+import { MakeGraphService } from "../../service/make-graph/make-graph.service";
 
 @Component({
   selector: "app-reg-exp-search",
