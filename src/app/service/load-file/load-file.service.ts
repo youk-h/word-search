@@ -6,6 +6,7 @@ import { map, mergeMap, toArray } from "rxjs/operators";
 
 import * as encoding from "encoding-japanese";
 
+import { Buffer } from "buffer";
 import { LoadFile } from "./load-file.service.i";
 
 @Injectable({

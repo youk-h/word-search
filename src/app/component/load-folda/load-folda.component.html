@@ -1,5 +1,5 @@
 <div class="load-folda" *ngIf="!loading">
-  <input mat-input type="file" multiple webkitdirectory style="display: none" #fileInput accept="image/*" (change)="onLoadFiles($event.target.files)" />
+  <input mat-input type="file" webkitdirectory style="display: none" #fileInput (change)="onLoadFiles($event.target.files)" />
   <button mat-raised-button color="primary" (click)="onClickFileInputButton()">
     <mat-icon>attach_file</mat-icon>
     フォルダを選択

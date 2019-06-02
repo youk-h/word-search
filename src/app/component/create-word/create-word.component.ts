@@ -69,10 +69,6 @@ export class CreateWordComponent implements OnInit, OnDestroy {
     console.log(this.searchConditionSvc.searchNumber);
   }
 
-  public createWordComplement(): string {
-    return "aho";
-  }
-
   public reset() {
     this.wordList = [];
     this.searchNumber = undefined;
