@@ -1,5 +1,4 @@
-import { Info } from "src/app/component/update-info/update-info.component.i";
-
+import { Info } from "../app/component/update-info/update-info.component.i";
 
 export const infos: Info[] = [
   {
