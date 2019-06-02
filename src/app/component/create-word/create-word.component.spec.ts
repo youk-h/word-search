@@ -34,7 +34,7 @@ describe('CreateWordComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create component and service', () => {
+  it("should create component and service", () => {
     expect(component).toBeTruthy();
     expect(searchConditionSvc).toBeTruthy();
   });
