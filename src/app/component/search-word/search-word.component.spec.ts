@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatIconModule } from "@angular/material";
 
 import { SearchWordComponent } from "./search-word.component";
-import { loadFileService } from "../../service/load-file/load-file.service";
+import { LoadFileService } from "../../service/load-file/load-file.service";
 import { SearchConditionService } from "../../service/search-condition/search-condition.service";
 import { AnalyzeTextsService } from "../../service/analyze-texts/analyze-texts.service";
 import { LoadFile } from "../../service/load-file/load-file.service.i";
@@ -10,7 +10,7 @@ import { LoadFile } from "../../service/load-file/load-file.service.i";
 describe("SearchwordComponent", () => {
   let component: SearchWordComponent;
   let fixture: ComponentFixture<SearchWordComponent>;
-  let loadFileSvc: loadFileService;
+  let loadFileSvc: LoadFileService;
   let searchConditionSvc: SearchConditionService;
   let analyzeTextSvc: AnalyzeTextsService;
 
@@ -21,7 +21,7 @@ describe("SearchwordComponent", () => {
       ],
       declarations: [SearchWordComponent],
       providers: [
-        loadFileService,
+        LoadFileService,
         SearchConditionService,
         AnalyzeTextsService,
       ],
@@ -31,7 +31,7 @@ describe("SearchwordComponent", () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchWordComponent);
     component = fixture.componentInstance;
-    loadFileSvc = TestBed.get(loadFileService);
+    loadFileSvc = TestBed.get(LoadFileService);
     searchConditionSvc = TestBed.get(SearchConditionService);
     analyzeTextSvc = TestBed.get(AnalyzeTextsService);
 

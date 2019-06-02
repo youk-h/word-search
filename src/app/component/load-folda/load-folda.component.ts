@@ -1,6 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 
-import { loadFileService } from "../../service/load-file/load-file.service";
+import { LoadFileService } from "../../service/load-file/load-file.service";
 
 @Component({
   selector: "app-load-folda",
@@ -13,7 +13,7 @@ export class LoadFoldaComponent {
   loading = false;
 
   constructor(
-    private fileService: loadFileService,
+    private fileService: LoadFileService,
   ) { }
 
   public onLoadFiles(files: any): void {

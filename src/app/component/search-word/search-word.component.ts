@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 
-import { loadFileService } from "../../service/load-file/load-file.service";
+import { LoadFileService } from "../../service/load-file/load-file.service";
 import { SearchConditionService } from "../../service/search-condition/search-condition.service";
 import { SearchedNumber } from "../../service/analyze-texts/analyze-texts.service.i";
 import { AnalyzeTextsService } from "../../service/analyze-texts/analyze-texts.service";
@@ -14,7 +14,7 @@ export class SearchWordComponent {
   public searchedNumber: SearchedNumber = 0;
 
   public constructor(
-    private fileService: loadFileService,
+    private fileService: LoadFileService,
     private searchCondtionService: SearchConditionService,
     private analyzeTextSvc: AnalyzeTextsService,
   ) { }
@@ -25,7 +25,7 @@ export class SearchWordComponent {
     this.searchedNumber = this.analyzeTextSvc.analyzeTextOfFiles(this.fileService.loadFiles, this.searchCondtionService.regExp);
   }
 
-  public checkConditionToSearch(fileService: loadFileService, searchCondition: SearchConditionService): boolean {
+  public checkConditionToSearch(fileService: LoadFileService, searchCondition: SearchConditionService): boolean {
     if (!searchCondition.regExp) {
       window.alert("ステップ１で検索文字を指定してください");
       return false;

@@ -10,7 +10,7 @@ import { HomePageModule } from "./pages/home-page/home-page.module";
 import { RegExpSearchModule } from "./pages/reg-exp-search/reg-exp-search.module";
 
 import { AppComponent } from "./app.component";
-import { loadFileService } from "./service/load-file/load-file.service";
+import { LoadFileService } from "./service/load-file/load-file.service";
 import { GenerateRegExpService, SearchConditionService } from "./service/search-condition/search-condition.service";
 import { MakeOutputDataService } from "./service/make-output-data/make-output-data.service";
 
@@ -30,7 +30,7 @@ import { MakeOutputDataService } from "./service/make-output-data/make-output-da
   providers: [
     GenerateRegExpService,
     SearchConditionService,
-    loadFileService,
+    LoadFileService,
     MakeOutputDataService,
   ],
   bootstrap: [AppComponent]

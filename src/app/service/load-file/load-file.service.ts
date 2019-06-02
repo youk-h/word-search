@@ -12,7 +12,7 @@ import { LoadFile } from "./load-file.service.i";
 @Injectable({
   providedIn: "root"
 })
-export class loadFileService {
+export class LoadFileService {
   public loadFiles: LoadFile[] = [];
 
   constructor() { }

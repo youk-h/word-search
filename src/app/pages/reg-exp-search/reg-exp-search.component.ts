@@ -6,7 +6,7 @@ import { LoadFoldaComponent } from "../../component/load-folda/load-folda.compon
 import { SearchWordComponent } from "../../component/search-word/search-word.component";
 
 import { SearchConditionService } from "../../service/search-condition/search-condition.service";
-import { loadFileService } from "../../service/load-file/load-file.service";
+import { LoadFileService } from "../../service/load-file/load-file.service";
 import { AnalyzeTextsService } from "../../service/analyze-texts/analyze-texts.service";
 import { MakeGraphService } from "../../service/make-graph/make-graph.service";
 
@@ -29,7 +29,7 @@ export class RegExpSearchComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private searchConditionSvc: SearchConditionService,
-    private fileManagementSvc: loadFileService,
+    private fileManagementSvc: LoadFileService,
     private analyzeTextSvc: AnalyzeTextsService,
     private makeGraphSvc: MakeGraphService,
   ) { }
