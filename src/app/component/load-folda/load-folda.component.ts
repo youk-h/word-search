@@ -16,8 +16,8 @@ export class LoadFoldaComponent {
     private fileService: LoadFileService,
   ) { }
 
-  public onLoadFiles(files: any): void {
-    files = this.fileService.convertObjectToArray(files);
+  public onLoadFiles(folda: { [key: number]: File }): void {
+    const files = this.fileService.convertObjectToArray(folda);
     this.loading = true;
 
     this.fileService.loadTextOfEachFiles$(files).subscribe(
