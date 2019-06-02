@@ -25,15 +25,18 @@ export class SearchWordComponent {
     this.searchedNumber = this.analyzeTextSvc.analyzeTextOfFiles(this.fileService.loadFiles, this.searchCondtionService.regExp);
   }
 
-  public checkConditionToSearch(fileService: loadFileService, searchCondition: SearchConditionService) {
+  public checkConditionToSearch(fileService: loadFileService, searchCondition: SearchConditionService): boolean {
     if (!searchCondition.regExp) {
-      return window.alert("ステップ１で検索文字を指定してください");
+      window.alert("ステップ１で検索文字を指定してください");
+      return false;
     }
     if (!searchCondition.searchNumber) {
-      return window.alert("ステップ１で検索文字数を指定してください");
+      window.alert("ステップ１で検索文字数を指定してください");
+      return false;
     }
     if (!fileService.loadFiles.length) {
-      return window.alert("ステップ２で検索対象のフォルダを読み込んでください");
+      window.alert("ステップ２で検索対象のフォルダを読み込んでください");
+      return false;
     }
     return true;
   }
