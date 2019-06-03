@@ -1,5 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 
+import { LoadFile } from "./load-folda.component.i";
 import { LoadFileService } from "../../service/load-file/load-file.service";
 
 @Component({
@@ -9,27 +10,30 @@ import { LoadFileService } from "../../service/load-file/load-file.service";
 })
 export class LoadFoldaComponent {
   @ViewChild("fileInput") fileInput;
-  public loadResult = { fileNumber: 0, charNumber: 0 };
+  public loadResult = this.initialize();
   loading = false;
 
   constructor(
     private fileService: LoadFileService,
   ) { }
 
+  public initialize() {
+    return { fileNumber: 0, charNumber: 0 };
+  }
+
   public onLoadFiles(folda: { [key: number]: File }): void {
-    const files = this.fileService.convertObjectToArray(folda);
     this.loading = true;
 
+    const files = this.fileService.convertObjectToArray(folda);
     this.fileService.loadTextOfEachFiles$(files).subscribe(
-      (loadFiles) => {
+      (loadFiles: LoadFile[]) => {
         this.loadResult = {
           fileNumber: loadFiles.length,
           charNumber: loadFiles.reduce((charNum, file) => charNum + file.loadText.length, 0)
         };
-        this.loading = false;
       },
-      (error) => console.log(error),
-    );
+      () => window.alert("読み込みに失敗しました"),
+    ).add(() => this.loading = false);
   }
 
   public onClickFileInputButton(): void {
@@ -37,6 +41,6 @@ export class LoadFoldaComponent {
   }
 
   public reset() {
-    this.loadResult = { fileNumber: 0, charNumber: 0 };
+    this.loadResult = this.initialize();
   }
 }
