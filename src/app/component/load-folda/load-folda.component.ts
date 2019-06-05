@@ -10,15 +10,15 @@ import { LoadFileService } from "../../service/load-file/load-file.service";
 })
 export class LoadFoldaComponent {
   @ViewChild("fileInput") fileInput;
-  public loadResult = this.initialize();
-  loading = false;
+  public loadResult;
+  public loading = false;
 
   constructor(
     private fileService: LoadFileService,
-  ) { }
+  ) { this.initialize(); }
 
   public initialize() {
-    return { fileNumber: 0, charNumber: 0 };
+    this.loadResult = { fileNumber: 0, charNumber: 0 };
   }
 
   public onLoadFiles(folda: { [key: number]: File }): void {
@@ -41,6 +41,6 @@ export class LoadFoldaComponent {
   }
 
   public reset() {
-    this.loadResult = this.initialize();
+    this.initialize();
   }
 }

@@ -9,14 +9,14 @@ import { SearchConditionService } from "../../service/search-condition/search-co
   styleUrls: ["./create-word.component.scss"],
 })
 export class CreateWordComponent implements OnInit, OnDestroy {
-  searchWord;
-  searchNumber: number;
-  wordList: string[] = [];
+  public searchWord: string;
+  public searchNumber: number;
+  public wordList: string[] = [];
 
   public wordList$ = new Subject<string[]>();
   public subscription: Subscription;
 
-  public constructor(
+  constructor(
     private searchConditionSvc: SearchConditionService,
   ) { }
 
@@ -26,9 +26,7 @@ export class CreateWordComponent implements OnInit, OnDestroy {
         this.wordList = wordList;
         this.searchConditionSvc.genRegExp(this.wordList);
       },
-      (error) => {
-        console.log(error);
-      },
+      (error) => console.log(error),
     );
   }
 
@@ -42,9 +40,8 @@ export class CreateWordComponent implements OnInit, OnDestroy {
     if (word && !this.searchConditionSvc.inWordList(word)) {
       this.searchConditionSvc.wordList.push(word);
       this.wordList$.next(this.searchConditionSvc.wordList);
-    } else {
-      console.log("this word has already registered");
     }
+
     this.searchWord = null;
   }
 
@@ -66,7 +63,6 @@ export class CreateWordComponent implements OnInit, OnDestroy {
 
   public onDecideSearchNumber(num: number) {
     this.searchConditionSvc.decideSearchNumber(num);
-    console.log(this.searchConditionSvc.searchNumber);
   }
 
   public reset() {
