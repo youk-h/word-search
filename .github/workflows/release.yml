@@ -3,22 +3,17 @@ name: CI
 on: [push]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
+  build-test:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        node_version: [8,10]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
     - name: npm ci
       run: npm ci
     - name: build
       run: npm run release
-
-  test:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: npm ci
-        run: npm ci
-      - name: test
-        run: npm run test
+    - name: test
+      run: npm run test
