@@ -12,9 +12,8 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-    - name: install packages
-      run: npm install
-    - name: build
-      run: npm run release
-    - name: test
-      run: npm run test
+    - name: install packages, build and test
+      run: |
+        npm install
+        npm run release
+        npm test
