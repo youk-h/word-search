@@ -95,7 +95,7 @@ describe("LoadFoldaComponent", () => {
 
     it("should call loadTextOfEachFiles$", () => {
       // arrange
-      const files = {};
+      const files = [];
       jest.spyOn(LoadFileService.prototype, "convertObjectToArray").mockReturnValue([]);
       jest.spyOn(LoadFileService.prototype, "loadTextOfEachFiles$").mockReturnValue(of());
 
