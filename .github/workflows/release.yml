@@ -8,10 +8,17 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        node_version: [8,10]
+        node_version: [8]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
+    - uses: actions/checkout@develop
+
+    - name: Use Node.js ${{ matrix.node_version }}
+      uses: actions/setup-node@develop
+      with:
+        version: ${{ matrix.node_version }}
+
     - name: install packages, build and test
       run: |
         npm install
