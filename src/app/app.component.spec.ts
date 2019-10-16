@@ -1,7 +1,7 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { TestBed, async } from "@angular/core/testing";
+import { AppComponent } from "./app.component";
 
-describe('AppComponent', () => {
+describe("AppComponent", () => {
   // beforeEach(async(() => {
   //   TestBed.configureTestingModule({
   //     declarations: [
@@ -10,7 +10,7 @@ describe('AppComponent', () => {
   //   }).compileComponents();
   // }));
 
-  it("", () => expect(1).toBe(1))
+  it("", () => expect(1).toBe(1));
   // it('should create the app', () => {
   //   const fixture = TestBed.createComponent(AppComponent);
   //   const app = fixture.debugElement.componentInstance;

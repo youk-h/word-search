@@ -4,7 +4,7 @@ import { Info } from "./update-info.component.i";
 import { infos } from "../../../public/update-info";
 
 @Component({
-  selector: "update-info",
+  selector: "app-update-info",
   templateUrl: "./update-info.component.html",
   styleUrls: ["./update-info.component.scss"]
 })

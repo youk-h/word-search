@@ -84,7 +84,7 @@ describe("DownloadFileComponent", () => {
     it("should set saveFileName formatted when fileName is", () => {
       // arrange
       const fileName = "file";
-      const rtnMock = "file.txt"
+      const rtnMock = "file.txt";
       jest.spyOn(ExportFileService.prototype, "formatFileName").mockReturnValue(rtnMock);
 
       const expected = rtnMock;

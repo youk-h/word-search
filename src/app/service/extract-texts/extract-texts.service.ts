@@ -71,5 +71,4 @@ export class CalculateTextlengthService {
   public calculateHalfSearchNumber(searchNumber: number, searchWordLength: number): number {
     return (searchNumber - searchWordLength) / 2;
   }
-
 }

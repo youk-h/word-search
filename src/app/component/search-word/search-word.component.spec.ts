@@ -79,7 +79,7 @@ describe("SearchwordComponent", () => {
       const expected = [
         loadFiles,
         regExp,
-      ]
+      ];
 
       // act
       component.onSearch();
@@ -200,5 +200,5 @@ describe("SearchwordComponent", () => {
       // assert
       expect(component.searchedNumber).toBe(expected);
     });
-  })
+  });
 });

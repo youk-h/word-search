@@ -9,7 +9,7 @@ export class CheckNumberDirective {
   @HostListener("input", ["$event"]) onInput(event) {
     const word = event.data;
     if (/[(０-９)+]/.test(word)) {
-      window.alert("半角数字で入力してください")
+      window.alert("半角数字で入力してください");
     }
 
     if (word && /[^\d]/.test(word.toString())) {
