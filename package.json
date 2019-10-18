@@ -7,6 +7,7 @@
     "build": "ng build",
     "release": "ng build --prod && jest --runInBand",
     "test": "jest --watchAll",
+    "test:coverage": "jest --coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -33,7 +34,7 @@
     "core-js": "^2.5.4",
     "encoding-japanese": "^1.0.29",
     "rxjs": "~6.3.3",
-    "tslib": "^1.9.0",
+    "tslib": "^1.10.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
