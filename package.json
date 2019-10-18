@@ -8,7 +8,7 @@
     "release": "ng build --prod && jest --runInBand",
     "test": "jest --watchAll",
     "test:coverage": "jest --coverage",
-    "lint": "ng lint",
+    "lint": "tslint --project .",
     "e2e": "ng e2e"
   },
   "jest": {
