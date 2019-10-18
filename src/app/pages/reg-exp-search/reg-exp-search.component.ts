@@ -29,7 +29,7 @@ export class RegExpSearchComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private searchConditionSvc: SearchConditionService,
-    private fileManagementSvc: LoadFileService,
+    private loadFileSvc: LoadFileService,
     private analyzeTextSvc: AnalyzeTextsService,
     private makeGraphSvc: MakeGraphService,
   ) { }
@@ -59,7 +59,7 @@ export class RegExpSearchComponent implements OnInit {
 
   public onResetLoadFolda() {
     this.loadFoldaComponent.reset();
-    this.fileManagementSvc.reset();
+    this.loadFileSvc.reset();
   }
 
   public onResetSearchResult() {
