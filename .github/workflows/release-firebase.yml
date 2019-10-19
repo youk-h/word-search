@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-test:
-    name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
@@ -25,25 +25,21 @@ jobs:
       with:
         name: dist
         path: dist
-  # deploy:
-  #   needs: build-test
-  #   name: Deploy app to firebase
-  #   runs-on: ${{matrix.os}}
-  #   strategy:
-  #     matrix:
-  #       node_version: [10]
-  #       os: [ubuntu-latest, windows-latest, macos-latest]
-  #   steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@master
-  #     - name: Download Artifact
-  #       uses: actions/download-artifact@master
-  #       with:
-  #         name: dist
-  #         path: dist
-  #     - name: Deploy to Firebase
-  #       uses: w9jds/firebase-action@master
-  #       with:
-  #         args: deploy --only hosting:prod
-  #       env:
-  #         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+  deploy:
+    needs: build-test
+    name: Deploy app to firebase
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: dist
+          path: dist
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting:prod
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
