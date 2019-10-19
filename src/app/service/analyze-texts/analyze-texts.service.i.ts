@@ -1,4 +1,4 @@
-export interface Match {
+export interface Index {
   index: number;
   word: string;
 }

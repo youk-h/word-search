@@ -2,7 +2,7 @@ export interface LoadFile extends File {
   loadText: string;
 }
 
-export interface Match {
+export interface Index {
   index: number;
   word: string;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { LoadFile } from "../load-file/load-file.service.i";
-import { Match, SearchedNumber } from "./analyze-texts.service.i";
+import { Index, SearchedNumber } from "./analyze-texts.service.i";
 
 import { ExtractTextsService, SearchMatchService } from "../extract-texts/extract-texts.service";
 import { MakeGraphService } from "../make-graph/make-graph.service";
@@ -22,10 +22,10 @@ export class AnalyzeTextsService {
 
     files.forEach((file: LoadFile) => {
       const searchMatch = new SearchMatchService();
-      const matches: Match[] = searchMatch.searchMatch(file.loadText, regExp);
+      const indexes: Index[] = searchMatch.searchMatch(file.loadText, regExp);
 
-      this.extractTextSvc.extractTextsFromFile(file, matches);
-      this.makeGraphSvc.makeGraphData(matches);
+      this.extractTextSvc.extractTextsFromFile(file, indexes);
+      this.makeGraphSvc.makeGraphData(indexes);
     });
 
     this.makeGraphSvc.addAllNumberToGraph(this.extractTextSvc.extractedTexts);

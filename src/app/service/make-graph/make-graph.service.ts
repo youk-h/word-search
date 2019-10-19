@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { Graph, GraphElement, Match, Text } from "./make-graph.service.i";
+import { Graph, GraphElement, Index, Text } from "./make-graph.service.i";
 
 @Injectable({
   providedIn: "root"
@@ -14,13 +14,13 @@ export class MakeGraphService {
     this.graphData = wordList.map((word: string) => [word, 0] as GraphElement);
   }
 
-  public makeGraphData(matches: Match[]) {
-    this.countGraphDataUsingMatches(this.graphData, matches);
+  public makeGraphData(indexes: Index[]) {
+    this.countGraphDataUsingMatches(this.graphData, indexes);
   }
 
-  public countGraphDataUsingMatches(graphData: Graph, matches: Match[]) {
-    matches.forEach((match: Match) => {
-      this.addGraphDataMatchingWithWord(graphData, match.word);
+  public countGraphDataUsingMatches(graphData: Graph, indexes: Index[]) {
+    indexes.forEach((index: Index) => {
+      this.addGraphDataMatchingWithWord(graphData, index.word);
     });
   }
 

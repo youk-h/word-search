@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Match, ExtractedTexts, Text, LoadFile } from "./extract-text.service.i";
+import { Index, ExtractedTexts, Text, LoadFile } from "./extract-text.service.i";
 import { SearchConditionService } from "../search-condition/search-condition.service";
 
 @Injectable({
@@ -10,24 +10,24 @@ export class ExtractTextsService {
 
   constructor(private searchCondtionSvc: SearchConditionService) { }
 
-  public extractTextsFromFile(file: LoadFile, matches: Match[]) {
-    matches.forEach((match) => {
-      this.extractedTexts.push(this.extractTextUsingIndex(file.loadText, match));
+  public extractTextsFromFile(file: LoadFile, indexes: Index[]) {
+    indexes.forEach((index) => {
+      this.extractedTexts.push(this.extractTextUsingIndex(file.loadText, index));
     });
   }
 
-  public extractTextUsingIndex(text: Text, match: Match): Text {
+  public extractTextUsingIndex(text: Text, index: Index): Text {
     const calcTextLenSvc = new CalculateTextlengthService();
-    const { start, end } = calcTextLenSvc.calculateTextLength(this.searchCondtionSvc.searchNumber, match);
+    const { start, end } = calcTextLenSvc.calculateTextLength(this.searchCondtionSvc.searchNumber, index);
 
     return text.substring(start, end);
   }
 }
 
 export class SearchMatchService {
-  public searchMatch(text: Text, regExp: RegExp): Match[] {
+  public searchMatch(text: Text, regExp: RegExp): Index[] {
     let temp: RegExpExecArray;
-    const indices: Match[] = [];
+    const indices: Index[] = [];
 
     // tslint:disable-next-line:no-conditional-assignment
     while (temp = regExp.exec(text)) {
@@ -44,13 +44,13 @@ export class SearchMatchService {
 export class CalculateTextlengthService {
   constructor() { }
 
-  public calculateTextLength(searchNumber: number, match: Match) {
-    const searchWordLength = match.word.length;
+  public calculateTextLength(searchNumber: number, index: Index) {
+    const searchWordLength = index.word.length;
     const searchNum = this.adjustSearchNumber(searchNumber, searchWordLength);
     const halfSearchedNumber = this.calculateHalfSearchNumber(searchNum, searchWordLength);
 
-    let start = match.index - halfSearchedNumber;
-    let end = match.index + (searchWordLength + halfSearchedNumber);
+    let start = index.index - halfSearchedNumber;
+    let end = index.index + (searchWordLength + halfSearchedNumber);
 
     if (start < 0) {
       end -= start;
