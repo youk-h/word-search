@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 
 import { LoadFile } from "./load-folda.component.i";
-import { LoadFileService } from "../../service/load-file/load-file.service";
+import { LoadFileService } from "../../services/load-file/load-file.service";
 
 @Component({
   selector: "app-load-folda",

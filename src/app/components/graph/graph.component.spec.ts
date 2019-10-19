@@ -9,10 +9,10 @@ import {
 } from "angular-google-charts";
 
 import { GraphComponent } from "./graph.component";
-import { MakeGraphService } from "../../service/make-graph/make-graph.service";
+import { MakeGraphService } from "../../services/make-graph/make-graph.service";
 
 describe("DownloadFileComponent", () => {
-  let component: GraphComponent;
+  let components: GraphComponent;
   let fixture: ComponentFixture<GraphComponent>;
   let makeGraphSvc: MakeGraphService;
 
@@ -30,7 +30,7 @@ describe("DownloadFileComponent", () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GraphComponent);
-    component = fixture.componentInstance;
+    components = fixture.componentInstance;
     makeGraphSvc = TestBed.get(MakeGraphService);
 
     fixture.detectChanges();
@@ -41,7 +41,7 @@ describe("DownloadFileComponent", () => {
   });
 
   it("should create", () => {
-    expect(component).toBeTruthy();
+    expect(components).toBeTruthy();
     expect(makeGraphSvc).toBeTruthy();
   });
 
@@ -56,7 +56,7 @@ describe("DownloadFileComponent", () => {
       fixture.detectChanges();
 
       // assert
-      expect(component.graphData).toEqual(expected);
+      expect(components.graphData).toEqual(expected);
     });
   });
 });

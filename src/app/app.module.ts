@@ -10,9 +10,9 @@ import { HomePageModule } from "./pages/home-page/home-page.module";
 import { RegExpSearchModule } from "./pages/reg-exp-search/reg-exp-search.module";
 
 import { AppComponent } from "./app.component";
-import { LoadFileService } from "./service/load-file/load-file.service";
-import { GenerateRegExpService, SearchConditionService } from "./service/search-condition/search-condition.service";
-import { MakeOutputDataService } from "./service/make-output-data/make-output-data.service";
+import { LoadFileService } from "./services/load-file/load-file.service";
+import { GenerateRegExpService, SearchConditionService } from "./services/search-condition/search-condition.service";
+import { MakeOutputDataService } from "./services/make-output-data/make-output-data.service";
 
 @NgModule({
   imports: [

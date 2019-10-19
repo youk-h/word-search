@@ -14,10 +14,10 @@ import {
 } from "@angular/material";
 
 import { LoadFoldaComponent } from "./load-folda.component";
-import { LoadFileService } from "../../service/load-file/load-file.service";
+import { LoadFileService } from "../../services/load-file/load-file.service";
 
 describe("LoadFoldaComponent", () => {
-  let component: LoadFoldaComponent;
+  let components: LoadFoldaComponent;
   let fixture: ComponentFixture<LoadFoldaComponent>;
   let loadFileSvc: LoadFileService;
 
@@ -38,13 +38,13 @@ describe("LoadFoldaComponent", () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoadFoldaComponent);
-    component = fixture.componentInstance;
+    components = fixture.componentInstance;
     loadFileSvc = TestBed.get(LoadFileService);
     fixture.detectChanges();
   });
 
   it("should create", () => {
-    expect(component).toBeTruthy();
+    expect(components).toBeTruthy();
     expect(loadFileSvc).toBeTruthy();
   });
 
@@ -57,7 +57,7 @@ describe("LoadFoldaComponent", () => {
       const expected = files;
 
       // act
-      component.onLoadFiles(files);
+      components.onLoadFiles(files);
 
       // assert
       expect(LoadFileService.prototype.convertObjectToArray).toHaveBeenCalledWith(expected);
@@ -72,7 +72,7 @@ describe("LoadFoldaComponent", () => {
       const expected = files;
 
       // act
-      component.onLoadFiles(files);
+      components.onLoadFiles(files);
 
       // assert
       expect(LoadFileService.prototype.convertObjectToArray).toHaveBeenCalledWith(expected);
@@ -87,7 +87,7 @@ describe("LoadFoldaComponent", () => {
       const expected = files;
 
       // act
-      component.onLoadFiles(files);
+      components.onLoadFiles(files);
 
       // assert
       expect(LoadFileService.prototype.convertObjectToArray).toHaveBeenCalledWith(expected);
@@ -102,7 +102,7 @@ describe("LoadFoldaComponent", () => {
       const expected = files;
 
       // act
-      component.onLoadFiles(files);
+      components.onLoadFiles(files);
 
       // assert
       expect(LoadFileService.prototype.loadTextOfEachFiles$).toHaveBeenCalledWith(expected);

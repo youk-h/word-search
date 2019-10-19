@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 
-import { MakeOutputDataService } from "../../service/make-output-data/make-output-data.service";
-import { ExportFileService } from "../../service/export-file/export-file.service";
-import { ExtractTextsService } from "../../service/extract-texts/extract-texts.service";
+import { MakeOutputDataService } from "../../services/make-output-data/make-output-data.service";
+import { ExportFileService } from "../../services/export-file/export-file.service";
+import { ExtractTextsService } from "../../services/extract-texts/extract-texts.service";
 
 @Component({
   selector: "app-download-file",

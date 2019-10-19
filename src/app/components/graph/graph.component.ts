@@ -1,7 +1,7 @@
 import { Component, DoCheck } from "@angular/core";
 
-import { Graph } from "../../service/make-graph/make-graph.service.i";
-import { MakeGraphService } from "../../service/make-graph/make-graph.service";
+import { Graph } from "../../services/make-graph/make-graph.service.i";
+import { MakeGraphService } from "../../services/make-graph/make-graph.service";
 
 @Component({
   selector: "app-graph",

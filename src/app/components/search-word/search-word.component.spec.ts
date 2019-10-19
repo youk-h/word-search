@@ -2,13 +2,13 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { MatIconModule } from "@angular/material";
 
 import { SearchWordComponent } from "./search-word.component";
-import { LoadFileService } from "../../service/load-file/load-file.service";
-import { SearchConditionService } from "../../service/search-condition/search-condition.service";
-import { AnalyzeTextsService } from "../../service/analyze-texts/analyze-texts.service";
-import { LoadFile } from "../../service/load-file/load-file.service.i";
+import { LoadFileService } from "../../services/load-file/load-file.service";
+import { SearchConditionService } from "../../services/search-condition/search-condition.service";
+import { AnalyzeTextsService } from "../../services/analyze-texts/analyze-texts.service";
+import { LoadFile } from "../../services/load-file/load-file.service.i";
 
 describe("SearchwordComponent", () => {
-  let component: SearchWordComponent;
+  let components: SearchWordComponent;
   let fixture: ComponentFixture<SearchWordComponent>;
   let loadFileSvc: LoadFileService;
   let searchConditionSvc: SearchConditionService;
@@ -30,7 +30,7 @@ describe("SearchwordComponent", () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchWordComponent);
-    component = fixture.componentInstance;
+    components = fixture.componentInstance;
     loadFileSvc = TestBed.get(LoadFileService);
     searchConditionSvc = TestBed.get(SearchConditionService);
     analyzeTextSvc = TestBed.get(AnalyzeTextsService);
@@ -42,8 +42,8 @@ describe("SearchwordComponent", () => {
     jest.restoreAllMocks();
   });
 
-  it("should create component and service", () => {
-    expect(component).toBeTruthy();
+  it("should create components and services", () => {
+    expect(components).toBeTruthy();
     expect(loadFileSvc).toBeTruthy();
     expect(searchConditionSvc).toBeTruthy();
     expect(analyzeTextSvc).toBeTruthy();
@@ -60,7 +60,7 @@ describe("SearchwordComponent", () => {
       ];
 
       // act
-      component.onSearch();
+      components.onSearch();
 
       // assert
       expect(SearchWordComponent.prototype.checkConditionToSearch).toHaveBeenCalledWith(...expected);
@@ -82,7 +82,7 @@ describe("SearchwordComponent", () => {
       ];
 
       // act
-      component.onSearch();
+      components.onSearch();
 
       // assert
       expect(AnalyzeTextsService.prototype.analyzeTextOfFiles).toHaveBeenCalledWith(...expected);
@@ -104,7 +104,7 @@ describe("SearchwordComponent", () => {
       const expected = "ステップ１で検索文字を指定してください";
 
       // act
-      component.checkConditionToSearch(loadFileSvc, searchConditionSvc);
+      components.checkConditionToSearch(loadFileSvc, searchConditionSvc);
 
       // assert
       expect(window.alert).toHaveBeenCalledWith(expected);
@@ -117,7 +117,7 @@ describe("SearchwordComponent", () => {
       const expected = false;
 
       // act
-      const actual = component.checkConditionToSearch(loadFileSvc, searchConditionSvc);
+      const actual = components.checkConditionToSearch(loadFileSvc, searchConditionSvc);
 
       // assert
       expect(actual).toEqual(expected);
@@ -130,7 +130,7 @@ describe("SearchwordComponent", () => {
       const expected = "ステップ１で検索文字数を指定してください";
 
       // act
-      component.checkConditionToSearch(loadFileSvc, searchConditionSvc);
+      components.checkConditionToSearch(loadFileSvc, searchConditionSvc);
 
       // assert
       expect(window.alert).toHaveBeenCalledWith(expected);
@@ -143,7 +143,7 @@ describe("SearchwordComponent", () => {
       const expected = false;
 
       // act
-      const actual = component.checkConditionToSearch(loadFileSvc, searchConditionSvc);
+      const actual = components.checkConditionToSearch(loadFileSvc, searchConditionSvc);
 
       // assert
       expect(actual).toEqual(expected);
@@ -156,7 +156,7 @@ describe("SearchwordComponent", () => {
       const expected = "ステップ２で検索対象のフォルダを読み込んでください";
 
       // act
-      component.checkConditionToSearch(loadFileSvc, searchConditionSvc);
+      components.checkConditionToSearch(loadFileSvc, searchConditionSvc);
 
       // assert
       expect(window.alert).toHaveBeenCalledWith(expected);
@@ -169,7 +169,7 @@ describe("SearchwordComponent", () => {
       const expected = false;
 
       // act
-      const actual = component.checkConditionToSearch(loadFileSvc, searchConditionSvc);
+      const actual = components.checkConditionToSearch(loadFileSvc, searchConditionSvc);
 
       // assert
       expect(actual).toEqual(expected);
@@ -180,7 +180,7 @@ describe("SearchwordComponent", () => {
       const expected = true;
 
       // act
-      const actual = component.checkConditionToSearch(loadFileSvc, searchConditionSvc);
+      const actual = components.checkConditionToSearch(loadFileSvc, searchConditionSvc);
 
       // assert
       expect(actual).toEqual(expected);
@@ -198,7 +198,7 @@ describe("SearchwordComponent", () => {
       searchConditionSvc.reset();
 
       // assert
-      expect(component.searchedNumber).toBe(expected);
+      expect(components.searchedNumber).toBe(expected);
     });
   });
 });

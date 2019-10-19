@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 
 import { CreateWordComponent } from "./create-word.component";
-import { SearchConditionService } from "../../service/search-condition/search-condition.service";
+import { SearchConditionService } from "../../services/search-condition/search-condition.service";
 import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule, MatInputModule, MatIconModule, MatListModule } from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";

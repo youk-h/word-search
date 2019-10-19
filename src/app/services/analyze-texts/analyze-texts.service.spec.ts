@@ -10,7 +10,7 @@ describe("AnalyzeTextsService", () => {
   let extractTextSvc: ExtractTextsService;
   let searchConditonSvc: SearchConditionService;
   let makeGraphSvc: MakeGraphService;
-  let service: AnalyzeTextsService;
+  let services: AnalyzeTextsService;
 
   beforeEach(() => {
     jest.restoreAllMocks();
@@ -18,7 +18,7 @@ describe("AnalyzeTextsService", () => {
     extractTextSvc = TestBed.get(ExtractTextsService);
     searchConditonSvc = TestBed.get(SearchConditionService);
     makeGraphSvc = TestBed.get(MakeGraphService);
-    service = TestBed.get(AnalyzeTextsService);
+    services = TestBed.get(AnalyzeTextsService);
   });
 
   describe("analyzeTextOfFiles", () => {
@@ -37,7 +37,7 @@ describe("AnalyzeTextsService", () => {
         jest.spyOn(makeGraphSvc, "initializeGraphData");
 
         // act
-        service.analyzeTextOfFiles(files, regExp);
+        services.analyzeTextOfFiles(files, regExp);
 
         // assert
         expect(makeGraphSvc.initializeGraphData).toHaveBeenCalledWith(searchConditonSvc.wordList);
@@ -57,7 +57,7 @@ describe("AnalyzeTextsService", () => {
         jest.spyOn(ExtractTextsService.prototype, "extractTextsFromFile");
         jest.spyOn(MakeGraphService.prototype, "makeGraphData");
         // act
-        service.analyzeTextOfFiles(files, regExp);
+        services.analyzeTextOfFiles(files, regExp);
 
         // assert
         expect(SearchMatchService.prototype.searchMatch).toHaveBeenCalledTimes(2);
@@ -79,7 +79,7 @@ describe("AnalyzeTextsService", () => {
           const expected = { text: file.loadText, regExp };
 
           // act
-          service.analyzeTextOfFiles(files, regExp);
+          services.analyzeTextOfFiles(files, regExp);
 
           // assert
           expect(SearchMatchService.prototype.searchMatch).toHaveBeenCalledWith(expected.text, expected.regExp);
@@ -94,7 +94,7 @@ describe("AnalyzeTextsService", () => {
           const expected = { file, indexes };
 
           // act
-          service.analyzeTextOfFiles(files, regExp);
+          services.analyzeTextOfFiles(files, regExp);
 
           // assert
           expect(ExtractTextsService.prototype.extractTextsFromFile).toHaveBeenCalledWith(expected.file, expected.indexes);
@@ -109,7 +109,7 @@ describe("AnalyzeTextsService", () => {
           const expected = { indexes };
 
           // act
-          service.analyzeTextOfFiles(files, regExp);
+          services.analyzeTextOfFiles(files, regExp);
 
           // assert
           expect(MakeGraphService.prototype.makeGraphData).toHaveBeenCalledWith(expected.indexes);
@@ -121,7 +121,7 @@ describe("AnalyzeTextsService", () => {
         jest.spyOn(MakeGraphService.prototype, "addAllNumberToGraph");
 
         // act
-        service.analyzeTextOfFiles(files, regExp);
+        services.analyzeTextOfFiles(files, regExp);
 
         // assert
         expect(MakeGraphService.prototype.addAllNumberToGraph).toHaveBeenCalledWith(extractTextSvc.extractedTexts);
@@ -133,7 +133,7 @@ describe("AnalyzeTextsService", () => {
         const expected = extractTextSvc.extractedTexts.length;
 
         // act
-        const extractedLength = service.analyzeTextOfFiles(files, regExp);
+        const extractedLength = services.analyzeTextOfFiles(files, regExp);
 
         // assert
         expect(extractedLength).toBe(expected);
@@ -150,7 +150,7 @@ describe("AnalyzeTextsService", () => {
       const expected = [];
 
       // act
-      service.reset();
+      services.reset();
 
       // asert
       expect(extractTextSvc.extractedTexts).toEqual(expected);

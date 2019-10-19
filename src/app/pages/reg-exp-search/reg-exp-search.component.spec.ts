@@ -28,40 +28,40 @@ import {
 } from "./reg-exp-search.component";
 import {
   SearchWordComponent
-} from "../../component/search-word/search-word.component";
+} from "../../components/search-word/search-word.component";
 import {
   LoadFoldaComponent
-} from "../../component/load-folda/load-folda.component";
+} from "../../components/load-folda/load-folda.component";
 import {
   DownloadFileComponent
-} from "../../component/download-file/download-file.component";
+} from "../../components/download-file/download-file.component";
 import {
   CreateWordComponent
-} from "../../component/create-word/create-word.component";
+} from "../../components/create-word/create-word.component";
 import {
   GraphComponent
-} from "../../component/graph/graph.component";
+} from "../../components/graph/graph.component";
 
 import {
   SearchConditionService
-} from "../../service/search-condition/search-condition.service";
+} from "../../services/search-condition/search-condition.service";
 
 import {
   CheckNumberDirective
-} from "../../directive/check-number.directive";
+} from "../../directives/check-number.directive";
 import {
   CommonModule
 } from "@angular/common";
 import {
   GoogleChartsModule
 } from "angular-google-charts";
-import { LoadFileService } from "../../service/load-file/load-file.service";
-import { AnalyzeTextsService } from "../../service/analyze-texts/analyze-texts.service";
-import { MakeGraphService } from "../../service/make-graph/make-graph.service";
+import { LoadFileService } from "../../services/load-file/load-file.service";
+import { AnalyzeTextsService } from "../../services/analyze-texts/analyze-texts.service";
+import { MakeGraphService } from "../../services/make-graph/make-graph.service";
 
 describe("RegExpSearchComponent", () => {
   let fixture: ComponentFixture<RegExpSearchComponent>;
-  let component: RegExpSearchComponent;
+  let components: RegExpSearchComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -98,7 +98,7 @@ describe("RegExpSearchComponent", () => {
   beforeEach(() => {
     jest.restoreAllMocks();
     fixture = TestBed.createComponent(RegExpSearchComponent);
-    component = fixture.componentInstance;
+    components = fixture.componentInstance;
     fixture.detectChanges();
   });
 
@@ -113,14 +113,14 @@ describe("RegExpSearchComponent", () => {
 
       jest.spyOn(CreateWordComponent.prototype, "reset");
       jest.spyOn(SearchConditionService.prototype, "reset");
-      jest.spyOn(component, "onResetSearchCondition");
+      jest.spyOn(components, "onResetSearchCondition");
 
       // act
       button.click();
       fixture.detectChanges();
 
       // assert
-      expect(component.onResetSearchCondition).toHaveBeenCalled();
+      expect(components.onResetSearchCondition).toHaveBeenCalled();
       expect(CreateWordComponent.prototype.reset).toHaveBeenCalled();
       expect(SearchConditionService.prototype.reset).toHaveBeenCalled();
     });
@@ -133,14 +133,14 @@ describe("RegExpSearchComponent", () => {
 
       jest.spyOn(LoadFoldaComponent.prototype, "reset");
       jest.spyOn(LoadFileService.prototype, "reset");
-      jest.spyOn(component, "onResetLoadFolda");
+      jest.spyOn(components, "onResetLoadFolda");
 
       // act
       button.click();
       fixture.detectChanges();
 
       // assert
-      expect(component.onResetLoadFolda).toHaveBeenCalled();
+      expect(components.onResetLoadFolda).toHaveBeenCalled();
       expect(LoadFoldaComponent.prototype.reset).toHaveBeenCalled();
       expect(LoadFileService.prototype.reset).toHaveBeenCalled();
     });
@@ -154,14 +154,14 @@ describe("RegExpSearchComponent", () => {
       jest.spyOn(SearchWordComponent.prototype, "reset");
       jest.spyOn(AnalyzeTextsService.prototype, "reset");
       jest.spyOn(MakeGraphService.prototype, "reset");
-      jest.spyOn(component, "onResetSearchResult");
+      jest.spyOn(components, "onResetSearchResult");
 
       // act
       button.click();
       fixture.detectChanges();
 
       // assert
-      expect(component.onResetSearchResult).toHaveBeenCalled();
+      expect(components.onResetSearchResult).toHaveBeenCalled();
       expect(SearchWordComponent.prototype.reset).toHaveBeenCalled();
       expect(AnalyzeTextsService.prototype.reset).toHaveBeenCalled();
       expect(MakeGraphService.prototype.reset).toHaveBeenCalled();
@@ -173,20 +173,20 @@ describe("RegExpSearchComponent", () => {
       // arrange
       const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector("button.resetAll");
 
-      jest.spyOn(component, "onResetSearchCondition");
-      jest.spyOn(component, "onResetLoadFolda");
-      jest.spyOn(component, "onResetSearchResult");
-      jest.spyOn(component, "onResetAll");
+      jest.spyOn(components, "onResetSearchCondition");
+      jest.spyOn(components, "onResetLoadFolda");
+      jest.spyOn(components, "onResetSearchResult");
+      jest.spyOn(components, "onResetAll");
 
       // act
       button.click();
       fixture.detectChanges();
 
       // assert
-      expect(component.onResetSearchResult).toHaveBeenCalled();
-      expect(component.onResetSearchCondition).toHaveBeenCalled();
-      expect(component.onResetLoadFolda).toHaveBeenCalled();
-      expect(component.onResetSearchResult).toHaveBeenCalled();
+      expect(components.onResetSearchResult).toHaveBeenCalled();
+      expect(components.onResetSearchCondition).toHaveBeenCalled();
+      expect(components.onResetLoadFolda).toHaveBeenCalled();
+      expect(components.onResetSearchResult).toHaveBeenCalled();
     });
   });
 

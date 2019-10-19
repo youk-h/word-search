@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
 
-import { LoadFileService } from "../../service/load-file/load-file.service";
-import { SearchConditionService } from "../../service/search-condition/search-condition.service";
-import { SearchedNumber } from "../../service/analyze-texts/analyze-texts.service.i";
-import { AnalyzeTextsService } from "../../service/analyze-texts/analyze-texts.service";
+import { LoadFileService } from "../../services/load-file/load-file.service";
+import { SearchConditionService } from "../../services/search-condition/search-condition.service";
+import { SearchedNumber } from "../../services/analyze-texts/analyze-texts.service.i";
+import { AnalyzeTextsService } from "../../services/analyze-texts/analyze-texts.service";
 
 @Component({
   selector: "app-search-word",

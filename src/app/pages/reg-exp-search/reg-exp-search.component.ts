@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-import { CreateWordComponent } from "../../component/create-word/create-word.component";
-import { LoadFoldaComponent } from "../../component/load-folda/load-folda.component";
-import { SearchWordComponent } from "../../component/search-word/search-word.component";
+import { CreateWordComponent } from "../../components/create-word/create-word.component";
+import { LoadFoldaComponent } from "../../components/load-folda/load-folda.component";
+import { SearchWordComponent } from "../../components/search-word/search-word.component";
 
-import { SearchConditionService } from "../../service/search-condition/search-condition.service";
-import { LoadFileService } from "../../service/load-file/load-file.service";
-import { AnalyzeTextsService } from "../../service/analyze-texts/analyze-texts.service";
-import { MakeGraphService } from "../../service/make-graph/make-graph.service";
+import { SearchConditionService } from "../../services/search-condition/search-condition.service";
+import { LoadFileService } from "../../services/load-file/load-file.service";
+import { AnalyzeTextsService } from "../../services/analyze-texts/analyze-texts.service";
+import { MakeGraphService } from "../../services/make-graph/make-graph.service";
 
 @Component({
   selector: "app-reg-exp-search",

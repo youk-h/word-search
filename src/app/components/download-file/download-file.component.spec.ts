@@ -16,13 +16,13 @@ import {
 } from "@angular/material";
 
 import { DownloadFileComponent } from "./download-file.component";
-import { ExportFileService } from "../../service/export-file/export-file.service";
-import { MakeOutputDataService } from "../../service/make-output-data/make-output-data.service";
-import { ExtractTextsService } from "../../service/extract-texts/extract-texts.service";
+import { ExportFileService } from "../../services/export-file/export-file.service";
+import { MakeOutputDataService } from "../../services/make-output-data/make-output-data.service";
+import { ExtractTextsService } from "../../services/extract-texts/extract-texts.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 describe("DownloadFileComponent", () => {
-  let component: DownloadFileComponent;
+  let components: DownloadFileComponent;
   let fixture: ComponentFixture<DownloadFileComponent>;
   let exportFileSvc: ExportFileService;
   let makeOutputSvc: MakeOutputDataService;
@@ -49,7 +49,7 @@ describe("DownloadFileComponent", () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DownloadFileComponent);
-    component = fixture.componentInstance;
+    components = fixture.componentInstance;
     exportFileSvc = TestBed.get(ExportFileService);
     makeOutputSvc = TestBed.get(MakeOutputDataService);
     extractTextsSvc = TestBed.get(ExtractTextsService);
@@ -62,7 +62,7 @@ describe("DownloadFileComponent", () => {
   });
 
   it("should create", () => {
-    expect(component).toBeTruthy();
+    expect(components).toBeTruthy();
     expect(exportFileSvc).toBeTruthy();
     expect(makeOutputSvc).toBeTruthy();
     expect(extractTextsSvc).toBeTruthy();
@@ -75,7 +75,7 @@ describe("DownloadFileComponent", () => {
       jest.spyOn(ExportFileService.prototype, "formatFileName");
 
       // act
-      component.onDecideFileName(fileName);
+      components.onDecideFileName(fileName);
 
       // assert
       expect(ExportFileService.prototype.formatFileName).toHaveBeenCalledWith(fileName);
@@ -90,23 +90,23 @@ describe("DownloadFileComponent", () => {
       const expected = rtnMock;
 
       // act
-      component.onDecideFileName(fileName);
+      components.onDecideFileName(fileName);
 
       // assert
-      expect(component.saveFileName).toBe(expected);
+      expect(components.saveFileName).toBe(expected);
     });
   });
 
   describe("onClickFileDownLoadButton", () => {
     it("should call ViewChild.nativeElement.click", () => {
       // arrange
-      component.downloadFile.nativeElement.click = jest.fn();
+      components.downloadFile.nativeElement.click = jest.fn();
 
       // act
-      component.onClickFileDownloadButton();
+      components.onClickFileDownloadButton();
 
       // assert
-      expect(component.downloadFile.nativeElement.click).toHaveBeenCalled();
+      expect(components.downloadFile.nativeElement.click).toHaveBeenCalled();
     });
   });
 
@@ -129,7 +129,7 @@ describe("DownloadFileComponent", () => {
         const expected = "検索後に結果をダウンロードできます";
 
         // act
-        component.onDownload(event);
+        components.onDownload(event);
 
         // assert
         expect(window.alert).toHaveBeenCalledWith(expected);
@@ -148,7 +148,7 @@ describe("DownloadFileComponent", () => {
         const expected = extractTextsSvc.extractedTexts;
 
         // act
-        component.onDownload(event);
+        components.onDownload(event);
 
         // assert
         expect(window.alert).not.toHaveBeenCalled();
@@ -166,7 +166,7 @@ describe("DownloadFileComponent", () => {
         const expected = new Blob([exportData], { type: "application/x-msdownload" });
 
         // act
-        component.onDownload(event);
+        components.onDownload(event);
 
         // assert
         expect(window.URL.createObjectURL).toHaveBeenCalledWith(expected);
@@ -181,7 +181,7 @@ describe("DownloadFileComponent", () => {
         const expected = href;
 
         // act
-        component.onDownload(event);
+        components.onDownload(event);
 
         // assert
         expect(event.currentTarget.href).toEqual(expected);

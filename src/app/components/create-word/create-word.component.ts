@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subject, Subscription } from "rxjs";
 
-import { SearchConditionService } from "../../service/search-condition/search-condition.service";
+import { SearchConditionService } from "../../services/search-condition/search-condition.service";
 
 @Component({
   selector: "app-create-word",
