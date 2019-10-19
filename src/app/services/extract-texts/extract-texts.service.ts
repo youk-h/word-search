@@ -69,6 +69,13 @@ export class CalculateTextlengthService {
   }
 
   public calculateHalfSearchNumber(searchNumber: number, searchWordLength: number): number {
-    return (searchNumber - searchWordLength) / 2;
+    const half = (searchNumber - searchWordLength) / 2;
+    return half - this.getDecimalValue(half)
   }
+
+  public getDecimalValue(num: number) {
+    const numbers = String(num).split(".");
+
+    return numbers[1] ? (num - Number(numbers[0])) : 0;
+  };
 }
