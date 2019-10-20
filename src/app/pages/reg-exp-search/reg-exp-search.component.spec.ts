@@ -30,7 +30,7 @@ import {
   SearchWordComponent
 } from "../../components/search-word/search-word.component";
 import {
-  LoadFoldaComponent
+  LoadFolderComponent
 } from "../../components/load-folder/load-folder.component";
 import {
   DownloadFileComponent
@@ -86,7 +86,7 @@ describe("RegExpSearchComponent", () => {
       declarations: [
         RegExpSearchComponent,
         SearchWordComponent,
-        LoadFoldaComponent,
+        LoadFolderComponent,
         DownloadFileComponent,
         CreateWordComponent,
         GraphComponent,
@@ -126,22 +126,22 @@ describe("RegExpSearchComponent", () => {
     });
   });
 
-  describe("onResetLoadFolda", () => {
+  describe("onResetLoadFolder", () => {
     it("should reset data when reset button of load folda is clicked", () => {
       // arrange
-      const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector("button.resetLoadFolda");
+      const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector("button.resetLoadFolder");
 
-      jest.spyOn(LoadFoldaComponent.prototype, "reset");
+      jest.spyOn(LoadFolderComponent.prototype, "reset");
       jest.spyOn(LoadFileService.prototype, "reset");
-      jest.spyOn(components, "onResetLoadFolda");
+      jest.spyOn(components, "onresetLoadFolder");
 
       // act
       button.click();
       fixture.detectChanges();
 
       // assert
-      expect(components.onResetLoadFolda).toHaveBeenCalled();
-      expect(LoadFoldaComponent.prototype.reset).toHaveBeenCalled();
+      expect(components.onresetLoadFolder).toHaveBeenCalled();
+      expect(LoadFolderComponent.prototype.reset).toHaveBeenCalled();
       expect(LoadFileService.prototype.reset).toHaveBeenCalled();
     });
   });
@@ -174,7 +174,7 @@ describe("RegExpSearchComponent", () => {
       const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector("button.resetAll");
 
       jest.spyOn(components, "onResetSearchCondition");
-      jest.spyOn(components, "onResetLoadFolda");
+      jest.spyOn(components, "onresetLoadFolder");
       jest.spyOn(components, "onResetSearchResult");
       jest.spyOn(components, "onResetAll");
 
@@ -185,7 +185,7 @@ describe("RegExpSearchComponent", () => {
       // assert
       expect(components.onResetSearchResult).toHaveBeenCalled();
       expect(components.onResetSearchCondition).toHaveBeenCalled();
-      expect(components.onResetLoadFolda).toHaveBeenCalled();
+      expect(components.onresetLoadFolder).toHaveBeenCalled();
       expect(components.onResetSearchResult).toHaveBeenCalled();
     });
   });

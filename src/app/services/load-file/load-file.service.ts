@@ -2,7 +2,7 @@
 import { Injectable } from "@angular/core";
 
 import { from, Observable } from "rxjs";
-import { map, mergeMap, toArray } from "rxjs/operators";
+import { map, mergeMap, toArray, tap } from "rxjs/operators";
 
 import * as encoding from "encoding-japanese";
 
@@ -54,7 +54,14 @@ export class LoadFileService {
   }
 
   public saveLoadedText(file: File, text: string): LoadFile {
-    return { ...file, loadText: text };
+    return {
+      name: file.name.split(".")[0],
+      loadText: text,
+      lastModified: file.lastModified,
+      size: file.size,
+      type: file.type,
+      slice: file.slice,
+    };
   }
 
   public convertObjectToArray(obj: { [key: number]: File }): File[] {

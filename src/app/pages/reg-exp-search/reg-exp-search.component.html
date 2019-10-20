@@ -11,10 +11,10 @@
 
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>フォルダ読み込み</ng-template>
+      <ng-template matStepLabel>テキスト読み込み</ng-template>
       <app-load-text></app-load-text>
       <button mat-stroked-button color="accent" matStepperPrevious>戻る</button>
-      <button mat-stroked-button class="resetLoadFolda" color="warn" (click)="onResetLoadFolda()">リセット</button>
+      <button mat-stroked-button class="resetLoadFolder" color="warn" (click)="onResetLoadFolder()">リセット</button>
       <button mat-stroked-button color="primary" matStepperNext>次へ</button>
     </form>
   </mat-step>

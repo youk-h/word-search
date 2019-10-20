@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Index, ExtractedTexts, Text, LoadFile } from "./extract-text.service.i";
+import { Index, ExtractedTexts, Text, LoadFile, ExtractedText } from "./extract-text.service.i";
 import { SearchConditionService } from "../search-condition/search-condition.service";
 
 @Injectable({
@@ -12,7 +12,10 @@ export class ExtractTextsService {
 
   public extractTextsFromFile(file: LoadFile, indexes: Index[]) {
     indexes.forEach((index) => {
-      this.extractedTexts.push(this.extractTextUsingIndex(file.loadText, index));
+      this.extractedTexts.push({
+        fileName: file.name,
+        text: this.extractTextUsingIndex(file.loadText, index)
+      } as ExtractedText);
     });
   }
 

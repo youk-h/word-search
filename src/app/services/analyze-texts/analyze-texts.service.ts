@@ -21,8 +21,7 @@ export class AnalyzeTextsService {
     this.makeGraphSvc.initializeGraphData(this.searchConditionSvc.wordList);
 
     files.forEach((file: LoadFile) => {
-      const searchMatch = new SearchMatchService();
-      const indexes: Index[] = searchMatch.searchMatch(file.loadText, regExp);
+      const indexes: Index[] = new SearchMatchService().searchMatch(file.loadText, regExp);
 
       this.extractTextSvc.extractTextsFromFile(file, indexes);
       this.makeGraphSvc.makeGraphData(indexes);

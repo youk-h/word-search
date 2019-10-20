@@ -30,6 +30,10 @@ export class LoadFileComponent {
   }
 
   public onClickFileInputButton(): void {
+    if (this.fileService.loadResult.fileNumber !== 0) {
+      window.alert("すでにファイルを読み込んでいます")
+      return;
+    }
     this.fileInput.nativeElement.click();
   }
 

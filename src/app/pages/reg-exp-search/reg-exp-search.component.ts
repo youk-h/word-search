@@ -57,7 +57,7 @@ export class RegExpSearchComponent implements OnInit {
     this.searchConditionSvc.reset();
   }
 
-  public onResetLoadFolda() {
+  public onResetLoadFolder() {
     this.loadTextComponent.reset();
     this.loadFileSvc.reset();
   }
@@ -70,7 +70,7 @@ export class RegExpSearchComponent implements OnInit {
 
   public onResetAll() {
     this.onResetSearchCondition();
-    this.onResetLoadFolda();
+    this.onResetLoadFolder();
     this.onResetSearchResult();
   }
 }

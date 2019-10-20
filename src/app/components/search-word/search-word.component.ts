@@ -20,7 +20,9 @@ export class SearchWordComponent {
   ) { }
 
   public onSearch() {
-    if (!this.checkConditionToSearch(this.fileService, this.searchCondtionService)) { return; }
+    if (!this.checkConditionToSearch(this.fileService, this.searchCondtionService)) {
+      return;
+    }
 
     this.searchedNumber = this.analyzeTextSvc.analyzeTextOfFiles(this.fileService.loadFiles, this.searchCondtionService.regExp);
   }

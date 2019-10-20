@@ -23,7 +23,7 @@ import {
 } from "@angular/material/stepper";
 
 import { LoadFileComponent } from "../load-file/load-file.component";
-import { LoadFoldaComponent } from "../load-folder/load-folder.component";
+import { LoadFolderComponent } from "../load-folder/load-folder.component";
 import { LoadTextComponent } from "./load-text.component";
 
 @NgModule({
@@ -45,7 +45,7 @@ import { LoadTextComponent } from "./load-text.component";
   declarations: [
     LoadTextComponent,
     LoadFileComponent,
-    LoadFoldaComponent,
+    LoadFolderComponent,
   ],
 })
 export class LoadTextModule { }

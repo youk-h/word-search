@@ -13,12 +13,12 @@ import {
   MatInputModule,
 } from "@angular/material";
 
-import { LoadFoldaComponent } from "./load-file.component";
+import { LoadFileComponent } from "./load-file.component";
 import { LoadFileService } from "../../services/load-file/load-file.service";
 
-describe("LoadFoldaComponent", () => {
-  let components: LoadFoldaComponent;
-  let fixture: ComponentFixture<LoadFoldaComponent>;
+describe("LoadFileComponent", () => {
+  let components: LoadFileComponent;
+  let fixture: ComponentFixture<LoadFileComponent>;
   let loadFileSvc: LoadFileService;
 
   beforeEach(async(() => {
@@ -29,7 +29,7 @@ describe("LoadFoldaComponent", () => {
         MatIconModule,
         MatProgressBarModule,
       ],
-      declarations: [LoadFoldaComponent],
+      declarations: [LoadFileComponent],
       providers: [
         LoadFileService,
       ],
@@ -37,7 +37,7 @@ describe("LoadFoldaComponent", () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoadFoldaComponent);
+    fixture = TestBed.createComponent(LoadFileComponent);
     components = fixture.componentInstance;
     loadFileSvc = TestBed.get(LoadFileService);
     fixture.detectChanges();

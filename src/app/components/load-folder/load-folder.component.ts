@@ -8,7 +8,7 @@ import { LoadFileService } from "../../services/load-file/load-file.service";
   templateUrl: "./load-folder.component.html",
   styleUrls: ["./load-folder.component.scss"]
 })
-export class LoadFoldaComponent {
+export class LoadFolderComponent {
   @ViewChild("fileInput") fileInput;
   public loading = false;
 
@@ -29,6 +29,10 @@ export class LoadFoldaComponent {
   }
 
   public onClickFoldaInputButton(): void {
+    if (this.fileService.loadResult.fileNumber !== 0) {
+      window.alert("すでにファイルを読み込んでいます")
+      return;
+    }
     this.fileInput.nativeElement.click();
   }
 }

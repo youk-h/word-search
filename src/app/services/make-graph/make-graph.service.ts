@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-import { Graph, GraphElement, Index, Text } from "./make-graph.service.i";
+import { Graph, GraphElement, Index, ExtractedTexts } from "./make-graph.service.i";
 
 @Injectable({
   providedIn: "root"
@@ -32,8 +32,8 @@ export class MakeGraphService {
     });
   }
 
-  public addAllNumberToGraph(texts: Text[]) {
-    this.graphData = [["全件数", texts.length], ...this.graphData];
+  public addAllNumberToGraph(extractedTexts: ExtractedTexts) {
+    this.graphData = [["全件数", extractedTexts.length], ...this.graphData];
   }
 
   reset() {
