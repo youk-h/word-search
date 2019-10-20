@@ -1,0 +1,31 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@master
+    - name: install packages, build and test
+      run: |
+        npm install
+        npm run build-test
+  deploy:
+    needs: build-test
+    name: Deploy app to firebase
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@master
+    - name: create dist
+      run: |
+        npm install
+        npm run release
+    - name: Deploy to Firebase
+      run: ./node_modules/.bin/firebase deploy --token=${{ secrets.FIREBASE_TOKEN }}
