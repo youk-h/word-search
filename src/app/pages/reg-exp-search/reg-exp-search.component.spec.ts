@@ -31,7 +31,7 @@ import {
 } from "../../components/search-word/search-word.component";
 import {
   LoadFoldaComponent
-} from "../../components/load-folda/load-folda.component";
+} from "../../components/load-folder/load-folder.component";
 import {
   DownloadFileComponent
 } from "../../components/download-file/download-file.component";

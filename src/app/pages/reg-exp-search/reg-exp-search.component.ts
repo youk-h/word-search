@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { CreateWordComponent } from "../../components/create-word/create-word.component";
-import { LoadFoldaComponent } from "../../components/load-folda/load-folda.component";
+import { LoadTextComponent } from "../../components/load-text/load-text.component";
 import { SearchWordComponent } from "../../components/search-word/search-word.component";
 
 import { SearchConditionService } from "../../services/search-condition/search-condition.service";
@@ -17,7 +17,7 @@ import { MakeGraphService } from "../../services/make-graph/make-graph.service";
 })
 export class RegExpSearchComponent implements OnInit {
   @ViewChild(CreateWordComponent) createWordComponent: CreateWordComponent;
-  @ViewChild(LoadFoldaComponent) loadFoldaComponent: LoadFoldaComponent;
+  @ViewChild(LoadTextComponent) loadTextComponent: LoadTextComponent;
   @ViewChild(SearchWordComponent) searchWordComponent: SearchWordComponent;
 
   firstFormGroup: FormGroup;
@@ -58,7 +58,7 @@ export class RegExpSearchComponent implements OnInit {
   }
 
   public onResetLoadFolda() {
-    this.loadFoldaComponent.reset();
+    this.loadTextComponent.reset();
     this.loadFileSvc.reset();
   }
 

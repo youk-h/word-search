@@ -7,13 +7,14 @@ import { map, mergeMap, toArray } from "rxjs/operators";
 import * as encoding from "encoding-japanese";
 
 import { Buffer } from "buffer";
-import { LoadFile } from "./load-file.service.i";
+import { LoadFile, LoadResult } from "./load-file.service.i";
 
 @Injectable({
   providedIn: "root"
 })
 export class LoadFileService {
   public loadFiles: LoadFile[] = [];
+  public loadResult: LoadResult = { fileNumber: 0, charNumber: 0 };
 
   constructor() { }
 
@@ -66,7 +67,15 @@ export class LoadFileService {
     return array;
   }
 
+  public saveLoadResult(loadFiles: LoadFile[]) {
+    this.loadResult = {
+      fileNumber: loadFiles.length,
+      charNumber: loadFiles.reduce((charNum, file) => charNum + file.loadText.length, 0),
+    };
+  }
+
   public reset() {
     this.loadFiles = [];
+    this.loadResult = { fileNumber: 0, charNumber: 0 };
   }
 }
