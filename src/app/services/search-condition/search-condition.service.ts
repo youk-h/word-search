@@ -41,7 +41,7 @@ export class GenerateRegExpService {
   }
 
   public convertWordsToRegExp(words: string[]): RegExp {
-    if (Array.isArray(words) && !words.length) {
+    if (!words.length) {
       return undefined;
     }
 
