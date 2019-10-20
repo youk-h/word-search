@@ -1,32 +1,57 @@
-import { TestBed, async } from "@angular/core/testing";
+import { TestBed, async, ComponentFixture } from "@angular/core/testing";
 import { AppComponent } from "./app.component";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+import { MatStepperModule } from "@angular/material/stepper";
+
+import { MY_ROUTES } from "./app.routing";
+import { HomePageModule } from "./pages/home-page/home-page.module";
+import { RegExpSearchModule } from "./pages/reg-exp-search/reg-exp-search.module";
+import { APP_BASE_HREF } from "@angular/common";
 
 describe("AppComponent", () => {
-  // beforeEach(async(() => {
-  //   TestBed.configureTestingModule({
-  //     declarations: [
-  //       AppComponent
-  //     ],
-  //   }).compileComponents();
-  // }));
+  let fixture: ComponentFixture<AppComponent>;
 
-  it("", () => expect(1).toBe(1));
-  // it('should create the app', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.debugElement.componentInstance;
-  //   expect(app).toBeTruthy();
-  // });
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        BrowserModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatStepperModule,
+        MY_ROUTES,
+        HomePageModule,
+        RegExpSearchModule,
+      ],
+      declarations: [
+        AppComponent
+      ],
+      providers: [
+        { provide: APP_BASE_HREF, useValue: "/" },
+      ]
+    }).compileComponents();
 
-  // it(`should have as title 'word-search'`, () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.debugElement.componentInstance;
-  //   expect(app.title).toEqual('word-search');
-  // });
+    fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+  }));
 
-  // it('should render title in a h1 tag', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.debugElement.nativeElement;
-  //   expect(compiled.querySelector('h1').textContent).toContain('Welcome to word-search!');
-  // });
+  it("should create the app", () => {
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it("should go to url", () => {
+    const routes = (fixture.nativeElement as HTMLElement).querySelectorAll("a");
+    const paths = [
+      "/",
+      "/reg-exp",
+      "/word-class",
+    ];
+    routes.forEach((route, i) => {
+      const href = (route as HTMLAnchorElement).getAttribute("href");
+      expect(href).toEqual(paths[i]);
+    });
+  });
 });
