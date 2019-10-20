@@ -20,7 +20,7 @@ export class LoadFileService {
   public loadTextFromEachFiles$(files: File[]): Observable<LoadFile[]> {
     return from(files).pipe(
       mergeMap((file: File) => this.loadTextFromFile$(file).pipe(
-        map((text) => this.saveLoadText(file, text)),
+        map((text) => this.saveLoadedText(file, text)),
       )),
       toArray(),
       map((loadFiles: LoadFile[]) => this.loadFiles = loadFiles),
@@ -52,7 +52,7 @@ export class LoadFileService {
     return encoding.codeToString(charCodes);
   }
 
-  public saveLoadText(file: File, text: string): LoadFile {
+  public saveLoadedText(file: File, text: string): LoadFile {
     return { ...file, loadText: text };
   }
 
