@@ -67,7 +67,7 @@ describe("LoadFoldaComponent", () => {
       // arrange
       const files = {};
       jest.spyOn(LoadFileService.prototype, "convertObjectToArray").mockReturnValue([]);
-      jest.spyOn(LoadFileService.prototype, "loadTextOfEachFiles$").mockReturnValue(of());
+      jest.spyOn(LoadFileService.prototype, "loadTextFromEachFiles$").mockReturnValue(of());
 
       const expected = files;
 
@@ -82,7 +82,7 @@ describe("LoadFoldaComponent", () => {
       // arrange
       const files = {};
       jest.spyOn(LoadFileService.prototype, "convertObjectToArray").mockReturnValue([]);
-      jest.spyOn(LoadFileService.prototype, "loadTextOfEachFiles$").mockReturnValue(of());
+      jest.spyOn(LoadFileService.prototype, "loadTextFromEachFiles$").mockReturnValue(of());
 
       const expected = files;
 
@@ -93,11 +93,11 @@ describe("LoadFoldaComponent", () => {
       expect(LoadFileService.prototype.convertObjectToArray).toHaveBeenCalledWith(expected);
     });
 
-    it("should call loadTextOfEachFiles$", () => {
+    it("should call loadTextFromEachFiles$", () => {
       // arrange
       const files = [];
       jest.spyOn(LoadFileService.prototype, "convertObjectToArray").mockReturnValue([]);
-      jest.spyOn(LoadFileService.prototype, "loadTextOfEachFiles$").mockReturnValue(of());
+      jest.spyOn(LoadFileService.prototype, "loadTextFromEachFiles$").mockReturnValue(of());
 
       const expected = files;
 
@@ -105,7 +105,7 @@ describe("LoadFoldaComponent", () => {
       components.onLoadFiles(files);
 
       // assert
-      expect(LoadFileService.prototype.loadTextOfEachFiles$).toHaveBeenCalledWith(expected);
+      expect(LoadFileService.prototype.loadTextFromEachFiles$).toHaveBeenCalledWith(expected);
     });
   });
 });

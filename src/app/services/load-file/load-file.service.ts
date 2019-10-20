@@ -17,17 +17,17 @@ export class LoadFileService {
 
   constructor() { }
 
-  public loadTextOfEachFiles$(files: File[]): Observable<LoadFile[]> {
+  public loadTextFromEachFiles$(files: File[]): Observable<LoadFile[]> {
     return from(files).pipe(
-      mergeMap((file: File) => this.loadTextOfFile$(file).pipe(
-        map((text) => this.addLoadTextToFile(file, text)),
+      mergeMap((file: File) => this.loadTextFromFile$(file).pipe(
+        map((text) => this.saveLoadText(file, text)),
       )),
       toArray(),
       map((loadFiles: LoadFile[]) => this.loadFiles = loadFiles),
     );
   }
 
-  public loadTextOfFile$(file: File): Observable<string> {
+  public loadTextFromFile$(file: File): Observable<string> {
     return from(this.loadArrayBuffer(file)).pipe(
       map((arrayBuffer: ArrayBuffer) => {
         return this.convertArrayBufferToUnicodeString(arrayBuffer);
@@ -52,7 +52,7 @@ export class LoadFileService {
     return encoding.codeToString(charCodes);
   }
 
-  public addLoadTextToFile(file: File, text: string): LoadFile {
+  public saveLoadText(file: File, text: string): LoadFile {
     return { ...file, loadText: text };
   }
 

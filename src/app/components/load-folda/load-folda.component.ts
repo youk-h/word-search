@@ -25,7 +25,7 @@ export class LoadFoldaComponent {
     this.loading = true;
 
     const files = this.fileService.convertObjectToArray(folda);
-    this.fileService.loadTextOfEachFiles$(files).subscribe(
+    this.fileService.loadTextFromEachFiles$(files).subscribe(
       (loadFiles: LoadFile[]) => {
         this.loadResult = {
           fileNumber: loadFiles.length,
