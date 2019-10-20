@@ -2,7 +2,8 @@
 ・ダウンロードボタンが、ファイル名を決める前から押せてしまう
 ・本のタイトルが無い
 ・検索結果のファイル内で、検索文字が目立たない
-
+・ファイル一件の検索ができない
+・検索文字数を決める前に入力完了ボタンが押せてしまう
 
 コード改善点
-・app.component.spec.tsのルーティングのテストを改良できそう
+・app.component.spec.tsのルーティングのテストを改良できそう https://codecraft.tv/courses/angular/unit-testing/routing/
