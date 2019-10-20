@@ -7,7 +7,7 @@ import { LoadFile, Index, Text } from "./extract-text.service.i";
 describe("", () => {
   beforeEach(() => {
     jest.restoreAllMocks();
-  })
+  });
 
   describe("ExtractTextsService", () => {
     let service: ExtractTextsService;
@@ -83,41 +83,41 @@ describe("", () => {
       describe("This reconcile start and end of text range", () => {
         it("should extract (end - start) charactor text", () => {
           // arrange
-          const text = "0123456789"
-          jest.spyOn(CalculateTextlengthService.prototype, "calculateTextLength").mockReturnValueOnce({ start: 2, end: 5 })
-          const expected = "234"
+          text = "0123456789";
+          jest.spyOn(CalculateTextlengthService.prototype, "calculateTextLength").mockReturnValueOnce({ start: 2, end: 5 });
+          const expected = "234";
 
           // act
-          const actual = service.extractTextUsingIndex(text, index)
+          const actual = service.extractTextUsingIndex(text, index);
 
           // assert
-          expect(actual).toEqual(expected)
+          expect(actual).toEqual(expected);
         });
 
         it("should change start to 0, then extract text when start is minus number", () => {
           // arrange
-          const text = "0123456789"
-          jest.spyOn(CalculateTextlengthService.prototype, "calculateTextLength").mockReturnValueOnce({ start: -5, end: 5 })
-          const expected = "01234"
+          text = "0123456789";
+          jest.spyOn(CalculateTextlengthService.prototype, "calculateTextLength").mockReturnValueOnce({ start: -5, end: 5 });
+          const expected = "01234";
 
           // act
-          const actual = service.extractTextUsingIndex(text, index)
+          const actual = service.extractTextUsingIndex(text, index);
 
           // assert
-          expect(actual).toEqual(expected)
+          expect(actual).toEqual(expected);
         });
 
         it("should change end to text length, then extract text when end is greater than text length", () => {
           // arrange
-          const text = "0123456789"
-          jest.spyOn(CalculateTextlengthService.prototype, "calculateTextLength").mockReturnValueOnce({ start: 2, end: 10 })
-          const expected = "23456789"
+          text = "0123456789";
+          jest.spyOn(CalculateTextlengthService.prototype, "calculateTextLength").mockReturnValueOnce({ start: 2, end: 10 });
+          const expected = "23456789";
 
           // act
-          const actual = service.extractTextUsingIndex(text, index)
+          const actual = service.extractTextUsingIndex(text, index);
 
           // assert
-          expect(actual).toEqual(expected)
+          expect(actual).toEqual(expected);
         });
       });
     });
@@ -129,22 +129,22 @@ describe("", () => {
     describe("searchMatch", () => {
       it("should extract index and word from given text according regexp", () => {
         // arrange
-        const text = "import hoge, export moge, import huge"
-        const regexp = /(import|export)/g
+        const text = "import hoge, export moge, import huge";
+        const regexp = /(import|export)/g;
 
         const expected = [
           { index: 0, word: "import" },
           { index: 13, word: "export" },
           { index: 26, word: "import" },
-        ]
+        ];
 
         // act
-        const actual = service.searchMatch(text, regexp)
+        const actual = service.searchMatch(text, regexp);
 
         // assert
-        expect(actual).toEqual(expected)
-      })
-    })
+        expect(actual).toEqual(expected);
+      });
+    });
   });
 
   describe("CalculateTextlengthService", () => {
@@ -156,7 +156,7 @@ describe("", () => {
 
       beforeEach(() => {
         searchNumber = 0;
-        index = { index: 0, word: "0" }
+        index = { index: 0, word: "0" };
       });
 
       describe("This method should returns range in text.", () => {
@@ -165,46 +165,46 @@ describe("", () => {
           searchNumber = 5;
           index = { index: 3, word: "import" };
 
-          const expected = { start: 3, end: 9 }
+          const expected = { start: 3, end: 9 };
           // act
           const actual = service.calculateTextLength(searchNumber, index);
 
           // assert
-          expect(actual).toEqual(expected)
-        })
+          expect(actual).toEqual(expected);
+        });
 
         it("should return range when searchNumber is greater than wordLength", () => {
           // arrange
           searchNumber = 10;
           index = { index: 3, word: "import" };
 
-          const expected = { start: 1, end: 11 }
+          const expected = { start: 1, end: 11 };
           // act
           const actual = service.calculateTextLength(searchNumber, index);
 
           // assert
-          expect(actual).toEqual(expected)
-        })
+          expect(actual).toEqual(expected);
+        });
 
         it("should shift range by absolute start when start < 0", () => {
           // arrange
           searchNumber = 20;
           index = { index: 3, word: "import" };
 
-          const expected = { start: 0, end: 20 }
+          const expected = { start: 0, end: 20 };
           // act
           const actual = service.calculateTextLength(searchNumber, index);
 
           // assert
-          expect(actual).toEqual(expected)
-        })
-      })
-    })
+          expect(actual).toEqual(expected);
+        });
+      });
+    });
 
     describe("adjustSearchNumber", () => {
       beforeEach(() => {
-        jest.restoreAllMocks()
-      })
+        jest.restoreAllMocks();
+      });
       describe("Thie method should return corrected searchNumber", () => {
         it("should return searchWordLength when searchNumber < searchWordLength", () => {
           // arrange
@@ -214,59 +214,59 @@ describe("", () => {
           const expected = searchWordLength;
 
           // act
-          const actual = service.adjustSearchNumber(searchNumber, searchWordLength)
+          const actual = service.adjustSearchNumber(searchNumber, searchWordLength);
 
           // assert
-          expect(actual).toBe(expected)
-        })
+          expect(actual).toBe(expected);
+        });
 
         it("should return searchNumber when searchNumber = searchWordLength", () => {
           // arrange
           const searchNumber = 6;
           const searchWordLength = 6;
 
-          const expected = searchNumber
+          const expected = searchNumber;
 
           // act
-          const actual = service.adjustSearchNumber(searchNumber, searchWordLength)
+          const actual = service.adjustSearchNumber(searchNumber, searchWordLength);
 
           // assert
-          expect(actual).toBe(expected)
-        })
+          expect(actual).toBe(expected);
+        });
 
         it("should return searchNumber when searchNumber > searchWordLength", () => {
           // arrange
           const searchNumber = 7;
           const searchWordLength = 6;
 
-          const expected = searchNumber
+          const expected = searchNumber;
 
           // act
-          const actual = service.adjustSearchNumber(searchNumber, searchWordLength)
+          const actual = service.adjustSearchNumber(searchNumber, searchWordLength);
 
           // assert
-          expect(actual).toBe(expected)
-        })
+          expect(actual).toBe(expected);
+        });
       });
     });
 
     describe("calculateHalfSearchNumber", () => {
       beforeEach(() => {
-        jest.restoreAllMocks()
-      })
+        jest.restoreAllMocks();
+      });
       it("should return half of searchNumber - searchWordLength", () => {
         // arrange
         const searchNumber = 10;
         const searchWordLength = 4;
 
-        const expected = 3
+        const expected = 3;
 
         // act
-        const actual = service.calculateHalfSearchNumber(searchNumber, searchWordLength)
+        const actual = service.calculateHalfSearchNumber(searchNumber, searchWordLength);
 
         // assert
-        expect(actual).toBe(expected)
-      })
+        expect(actual).toBe(expected);
+      });
 
       it("should return value reduced by decimal value", () => {
         // arrange
@@ -276,11 +276,11 @@ describe("", () => {
         const expected = 0;
 
         // act
-        const actual = service.calculateHalfSearchNumber(searchNumber, searchWordLength)
+        const actual = service.calculateHalfSearchNumber(searchNumber, searchWordLength);
 
         // assert
-        expect(actual).toBe(expected)
-      })
+        expect(actual).toBe(expected);
+      });
 
       it("should return 0 when searchNumber - searchWordLength = 0", () => {
         // arrange
@@ -290,12 +290,12 @@ describe("", () => {
         const expected = 0;
 
         // act
-        const actual = service.calculateHalfSearchNumber(searchNumber, searchWordLength)
+        const actual = service.calculateHalfSearchNumber(searchNumber, searchWordLength);
 
         // assert
-        expect(actual).toBe(expected)
-      })
-    })
+        expect(actual).toBe(expected);
+      });
+    });
 
     describe("getDecimalValue", () => {
       it("should return decimal value", () => {
@@ -305,10 +305,10 @@ describe("", () => {
         const expected = 0.5;
 
         // act
-        const actual = service.getDecimalValue(num)
+        const actual = service.getDecimalValue(num);
 
         // assert
-        expect(actual).toBe(expected)
+        expect(actual).toBe(expected);
       });
 
       it("should return decimal value", () => {
@@ -318,11 +318,11 @@ describe("", () => {
         const expected = 0;
 
         // act
-        const actual = service.getDecimalValue(num)
+        const actual = service.getDecimalValue(num);
 
         // assert
-        expect(actual).toBe(expected)
+        expect(actual).toBe(expected);
       });
-    })
-  })
-})
+    });
+  });
+});

@@ -70,12 +70,12 @@ export class CalculateTextlengthService {
 
   public calculateHalfSearchNumber(searchNumber: number, searchWordLength: number): number {
     const half = (searchNumber - searchWordLength) / 2;
-    return half - this.getDecimalValue(half)
+    return half - this.getDecimalValue(half);
   }
 
   public getDecimalValue(num: number) {
     const numbers = String(num).split(".");
 
     return numbers[1] ? (num - Number(numbers[0])) : 0;
-  };
+  }
 }
