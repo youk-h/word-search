@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class ExportFileService {
-
   public formatFileName(name: string): string {
     let fileName = name;
     const expand = ".txt";

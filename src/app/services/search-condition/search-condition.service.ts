@@ -10,8 +10,7 @@ export class SearchConditionService {
 
   private generateRegExp = new GenerateRegExpService();
 
-  constructor(
-  ) { }
+  constructor() {}
 
   public genRegExp(words: string[]) {
     this.regExp = this.generateRegExp.convertWordsToRegExp(words);
@@ -30,11 +29,10 @@ export class SearchConditionService {
     this.regExp = undefined;
     this.searchNumber = undefined;
   }
-
 }
 
 export class GenerateRegExpService {
-  constructor() { }
+  constructor() {}
 
   public escapeWhiteSpace(word: string): string {
     return word.replace(/^\s+/g, "").replace(/\s+$/g, "");

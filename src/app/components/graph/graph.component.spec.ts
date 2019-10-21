@@ -1,12 +1,6 @@
-import {
-  async,
-  ComponentFixture,
-  TestBed
-} from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import {
-  GoogleChartsModule,
-} from "angular-google-charts";
+import { GoogleChartsModule } from "angular-google-charts";
 
 import { GraphComponent } from "./graph.component";
 import { MakeGraphService } from "../../services/make-graph/make-graph.service";
@@ -18,13 +12,9 @@ describe("DownloadFileComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        GoogleChartsModule,
-      ],
+      imports: [GoogleChartsModule],
       declarations: [GraphComponent],
-      providers: [
-        MakeGraphService,
-      ],
+      providers: [MakeGraphService],
     }).compileComponents();
   }));
 

@@ -3,7 +3,12 @@ import { ComponentFixture, TestBed, async } from "@angular/core/testing";
 import { CreateWordComponent } from "./create-word.component";
 import { SearchConditionService } from "../../services/search-condition/search-condition.service";
 import { FormsModule } from "@angular/forms";
-import { MatFormFieldModule, MatInputModule, MatIconModule, MatListModule } from "@angular/material";
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatIconModule,
+  MatListModule,
+} from "@angular/material";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { Subscription, Subject } from "rxjs";
 
@@ -61,13 +66,17 @@ describe("CreateWordComponent", () => {
 
       it("should call genRegExp with received wordList", () => {
         // arrange
-        jest.spyOn(SearchConditionService.prototype, "genRegExp").mockReturnValue();
+        jest
+          .spyOn(SearchConditionService.prototype, "genRegExp")
+          .mockReturnValue();
 
         // act
         component.wordList$.next();
 
         // assert
-        expect(searchConditionSvc.genRegExp).toHaveBeenCalledWith(component.wordList);
+        expect(searchConditionSvc.genRegExp).toHaveBeenCalledWith(
+          component.wordList
+        );
       });
     });
   });
@@ -75,7 +84,9 @@ describe("CreateWordComponent", () => {
   describe("ngOnDestroy", () => {
     it("should call unsubscribe of component.subscription", () => {
       // arrange
-      jest.spyOn(Subject.prototype, "subscribe").mockReturnValue(new Subscription());
+      jest
+        .spyOn(Subject.prototype, "subscribe")
+        .mockReturnValue(new Subscription());
       jest.spyOn(Subscription.prototype, "unsubscribe").mockReturnValue();
 
       // act
@@ -83,14 +94,15 @@ describe("CreateWordComponent", () => {
 
       // assert
       expect(Subscription.prototype.unsubscribe).toHaveBeenCalled();
-
     });
   });
 
   describe("onAddWordToWordList", () => {
     it("should push word when word is and is not in wordList", () => {
       // arrange
-      jest.spyOn(SearchConditionService.prototype, "inWordList").mockReturnValue(false);
+      jest
+        .spyOn(SearchConditionService.prototype, "inWordList")
+        .mockReturnValue(false);
       const word = "import";
       searchConditionSvc.wordList = [];
 
@@ -105,7 +117,9 @@ describe("CreateWordComponent", () => {
 
     it("should not push word when word is not", () => {
       // arrange
-      jest.spyOn(SearchConditionService.prototype, "inWordList").mockReturnValue(false);
+      jest
+        .spyOn(SearchConditionService.prototype, "inWordList")
+        .mockReturnValue(false);
       const word = "";
       searchConditionSvc.wordList = [];
 
@@ -120,7 +134,9 @@ describe("CreateWordComponent", () => {
 
     it("should not push word when word is in wordList", () => {
       // arrange
-      jest.spyOn(SearchConditionService.prototype, "inWordList").mockReturnValue(true);
+      jest
+        .spyOn(SearchConditionService.prototype, "inWordList")
+        .mockReturnValue(true);
       const word = "import";
       searchConditionSvc.wordList = ["import"];
 
@@ -136,7 +152,9 @@ describe("CreateWordComponent", () => {
     it("should call next with service.wordList", () => {
       // arrange
       jest.spyOn(Subject.prototype, "next").mockReturnValue();
-      jest.spyOn(SearchConditionService.prototype, "inWordList").mockReturnValue(false);
+      jest
+        .spyOn(SearchConditionService.prototype, "inWordList")
+        .mockReturnValue(false);
       const word = "import";
       searchConditionSvc.wordList = [];
 
@@ -151,7 +169,9 @@ describe("CreateWordComponent", () => {
 
     it("should set searchWord with null", () => {
       // arrange
-      jest.spyOn(SearchConditionService.prototype, "inWordList").mockReturnValue(false);
+      jest
+        .spyOn(SearchConditionService.prototype, "inWordList")
+        .mockReturnValue(false);
       const word = "import";
 
       const expected = null;
@@ -162,7 +182,6 @@ describe("CreateWordComponent", () => {
       // assert
       expect(component.searchWord).toEqual(expected);
     });
-
   });
 
   describe("onChangeWordInWordList", () => {
@@ -259,7 +278,9 @@ describe("CreateWordComponent", () => {
   describe("onDecideSeachNumber", () => {
     it("should call decideSeachNumber with number received from view", () => {
       // arrange
-      jest.spyOn(SearchConditionService.prototype, "decideSearchNumber").mockReturnValue();
+      jest
+        .spyOn(SearchConditionService.prototype, "decideSearchNumber")
+        .mockReturnValue();
       const num = 0;
       const expected = num;
 
@@ -267,7 +288,9 @@ describe("CreateWordComponent", () => {
       component.onDecideSearchNumber(num);
 
       // assert
-      expect(searchConditionSvc.decideSearchNumber).toHaveBeenCalledWith(expected);
+      expect(searchConditionSvc.decideSearchNumber).toHaveBeenCalledWith(
+        expected
+      );
     });
   });
 

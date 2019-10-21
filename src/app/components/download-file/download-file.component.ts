@@ -16,10 +16,10 @@ export class DownloadFileComponent implements OnInit {
   constructor(
     private exportFileSvc: ExportFileService,
     private makeOutputSvc: MakeOutputDataService,
-    private extractTextsSvc: ExtractTextsService,
-  ) { }
+    private extractTextsSvc: ExtractTextsService
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   public onDecideFileName(fileName: string) {
     if (fileName) {
@@ -35,8 +35,12 @@ export class DownloadFileComponent implements OnInit {
     if (this.extractTextsSvc.extractedTexts.length === 0) {
       return window.alert("検索後に結果をダウンロードできます");
     }
-    const exportData: string = this.makeOutputSvc.makeOutputData(this.extractTextsSvc.extractedTexts);
-    const blob: Blob = new Blob([exportData], { type: "application/x-msdownload" });
+    const exportData: string = this.makeOutputSvc.makeOutputData(
+      this.extractTextsSvc.extractedTexts
+    );
+    const blob: Blob = new Blob([exportData], {
+      type: "application/x-msdownload",
+    });
     event.currentTarget.href = window.URL.createObjectURL(blob);
   }
 }

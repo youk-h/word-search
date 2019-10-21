@@ -6,7 +6,7 @@ import { Text, ExtractedTexts } from "./make-output.service.i";
   providedIn: "root",
 })
 export class MakeOutputDataService {
-  constructor() { }
+  constructor() {}
 
   public makeOutputData(extractedTexts: ExtractedTexts = []): Text {
     let section: Text = "";

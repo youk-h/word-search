@@ -1,8 +1,4 @@
-import {
-  async,
-  ComponentFixture,
-  TestBed
-} from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { of } from "rxjs";
 
@@ -30,9 +26,7 @@ describe("LoadFolderComponent", () => {
         MatProgressBarModule,
       ],
       declarations: [LoadFolderComponent],
-      providers: [
-        LoadFileService,
-      ],
+      providers: [LoadFileService],
     }).compileComponents();
   }));
 
@@ -52,7 +46,9 @@ describe("LoadFolderComponent", () => {
     it("should call convertObjectToArray", () => {
       // arrange
       const files = {};
-      jest.spyOn(LoadFileService.prototype, "convertObjectToArray").mockReturnValue([]);
+      jest
+        .spyOn(LoadFileService.prototype, "convertObjectToArray")
+        .mockReturnValue([]);
 
       const expected = files;
 
@@ -60,14 +56,20 @@ describe("LoadFolderComponent", () => {
       components.onLoadFiles(files);
 
       // assert
-      expect(LoadFileService.prototype.convertObjectToArray).toHaveBeenCalledWith(expected);
+      expect(
+        LoadFileService.prototype.convertObjectToArray
+      ).toHaveBeenCalledWith(expected);
     });
 
     it("should set loading with true", () => {
       // arrange
       const files = {};
-      jest.spyOn(LoadFileService.prototype, "convertObjectToArray").mockReturnValue([]);
-      jest.spyOn(LoadFileService.prototype, "loadTextFromEachFiles$").mockReturnValue(of());
+      jest
+        .spyOn(LoadFileService.prototype, "convertObjectToArray")
+        .mockReturnValue([]);
+      jest
+        .spyOn(LoadFileService.prototype, "loadTextFromEachFiles$")
+        .mockReturnValue(of());
 
       const expected = files;
 
@@ -75,14 +77,20 @@ describe("LoadFolderComponent", () => {
       components.onLoadFiles(files);
 
       // assert
-      expect(LoadFileService.prototype.convertObjectToArray).toHaveBeenCalledWith(expected);
+      expect(
+        LoadFileService.prototype.convertObjectToArray
+      ).toHaveBeenCalledWith(expected);
     });
 
     it("should set loading with true", () => {
       // arrange
       const files = {};
-      jest.spyOn(LoadFileService.prototype, "convertObjectToArray").mockReturnValue([]);
-      jest.spyOn(LoadFileService.prototype, "loadTextFromEachFiles$").mockReturnValue(of());
+      jest
+        .spyOn(LoadFileService.prototype, "convertObjectToArray")
+        .mockReturnValue([]);
+      jest
+        .spyOn(LoadFileService.prototype, "loadTextFromEachFiles$")
+        .mockReturnValue(of());
 
       const expected = files;
 
@@ -90,14 +98,20 @@ describe("LoadFolderComponent", () => {
       components.onLoadFiles(files);
 
       // assert
-      expect(LoadFileService.prototype.convertObjectToArray).toHaveBeenCalledWith(expected);
+      expect(
+        LoadFileService.prototype.convertObjectToArray
+      ).toHaveBeenCalledWith(expected);
     });
 
     it("should call loadTextFromEachFiles$", () => {
       // arrange
       const files = [];
-      jest.spyOn(LoadFileService.prototype, "convertObjectToArray").mockReturnValue([]);
-      jest.spyOn(LoadFileService.prototype, "loadTextFromEachFiles$").mockReturnValue(of());
+      jest
+        .spyOn(LoadFileService.prototype, "convertObjectToArray")
+        .mockReturnValue([]);
+      jest
+        .spyOn(LoadFileService.prototype, "loadTextFromEachFiles$")
+        .mockReturnValue(of());
 
       const expected = files;
 
@@ -105,7 +119,9 @@ describe("LoadFolderComponent", () => {
       components.onLoadFiles(files);
 
       // assert
-      expect(LoadFileService.prototype.loadTextFromEachFiles$).toHaveBeenCalledWith(expected);
+      expect(
+        LoadFileService.prototype.loadTextFromEachFiles$
+      ).toHaveBeenCalledWith(expected);
     });
   });
 });

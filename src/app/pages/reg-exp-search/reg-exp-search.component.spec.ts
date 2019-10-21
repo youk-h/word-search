@@ -1,17 +1,8 @@
-import {
-  TestBed,
-  ComponentFixture,
-  async
-} from "@angular/core/testing";
+import { TestBed, ComponentFixture, async } from "@angular/core/testing";
 
-import {
-  FormsModule,
-  ReactiveFormsModule
-} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import {
-  BrowserAnimationsModule
-} from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import {
   MatFormFieldModule,
@@ -20,41 +11,21 @@ import {
   MatIconModule,
   MatStepperModule,
   MatButtonModule,
-  MatProgressBarModule
+  MatProgressBarModule,
 } from "@angular/material";
 
-import {
-  RegExpSearchComponent
-} from "./reg-exp-search.component";
-import {
-  SearchWordComponent
-} from "../../components/search-word/search-word.component";
-import {
-  LoadFolderComponent
-} from "../../components/load-folder/load-folder.component";
-import {
-  DownloadFileComponent
-} from "../../components/download-file/download-file.component";
-import {
-  CreateWordComponent
-} from "../../components/create-word/create-word.component";
-import {
-  GraphComponent
-} from "../../components/graph/graph.component";
+import { RegExpSearchComponent } from "./reg-exp-search.component";
+import { SearchWordComponent } from "../../components/search-word/search-word.component";
+import { LoadFolderComponent } from "../../components/load-folder/load-folder.component";
+import { DownloadFileComponent } from "../../components/download-file/download-file.component";
+import { CreateWordComponent } from "../../components/create-word/create-word.component";
+import { GraphComponent } from "../../components/graph/graph.component";
 
-import {
-  SearchConditionService
-} from "../../services/search-condition/search-condition.service";
+import { SearchConditionService } from "../../services/search-condition/search-condition.service";
 
-import {
-  CheckNumberDirective
-} from "../../directives/check-number.directive";
-import {
-  CommonModule
-} from "@angular/common";
-import {
-  GoogleChartsModule
-} from "angular-google-charts";
+import { CheckNumberDirective } from "../../directives/check-number.directive";
+import { CommonModule } from "@angular/common";
+import { GoogleChartsModule } from "angular-google-charts";
 import { LoadFileService } from "../../services/load-file/load-file.service";
 import { AnalyzeTextsService } from "../../services/analyze-texts/analyze-texts.service";
 import { MakeGraphService } from "../../services/make-graph/make-graph.service";
@@ -109,7 +80,9 @@ describe("RegExpSearchComponent", () => {
   describe("onResetSearchCondition", () => {
     it("should reset data when reset button of search condition is clicked", () => {
       // arrange
-      const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector("button.resetSearchCondition");
+      const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector(
+        "button.resetSearchCondition"
+      );
 
       jest.spyOn(CreateWordComponent.prototype, "reset");
       jest.spyOn(SearchConditionService.prototype, "reset");
@@ -129,7 +102,9 @@ describe("RegExpSearchComponent", () => {
   describe("onResetLoadFolder", () => {
     it("should reset data when reset button of load folda is clicked", () => {
       // arrange
-      const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector("button.resetLoadFolder");
+      const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector(
+        "button.resetLoadFolder"
+      );
 
       jest.spyOn(LoadFolderComponent.prototype, "reset");
       jest.spyOn(LoadFileService.prototype, "reset");
@@ -149,7 +124,9 @@ describe("RegExpSearchComponent", () => {
   describe("onResetSearchResult", () => {
     it("should reset data when reset button of search result is clicked", () => {
       // arrange
-      const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector("button.resetSearchResult");
+      const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector(
+        "button.resetSearchResult"
+      );
 
       jest.spyOn(SearchWordComponent.prototype, "reset");
       jest.spyOn(AnalyzeTextsService.prototype, "reset");
@@ -171,7 +148,9 @@ describe("RegExpSearchComponent", () => {
   describe("onResetAll", () => {
     it("should reset data when reset last button is clicked", () => {
       // arrange
-      const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector("button.resetAll");
+      const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector(
+        "button.resetAll"
+      );
 
       jest.spyOn(components, "onResetSearchCondition");
       jest.spyOn(components, "onresetLoadFolder");
@@ -189,5 +168,4 @@ describe("RegExpSearchComponent", () => {
       expect(components.onResetSearchResult).toHaveBeenCalled();
     });
   });
-
 });

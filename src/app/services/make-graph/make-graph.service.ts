@@ -1,14 +1,19 @@
 import { Injectable } from "@angular/core";
 
-import { Graph, GraphElement, Index, ExtractedTexts } from "./make-graph.service.i";
+import {
+  Graph,
+  GraphElement,
+  Index,
+  ExtractedTexts,
+} from "./make-graph.service.i";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class MakeGraphService {
   public graphData: Graph = [];
 
-  constructor() { }
+  constructor() {}
 
   public initializeGraphData(wordList: string[]) {
     this.graphData = wordList.map((word: string) => [word, 0] as GraphElement);

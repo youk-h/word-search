@@ -6,12 +6,12 @@ import { infos } from "../../../public/update-info";
 @Component({
   selector: "app-update-info",
   templateUrl: "./update-info.component.html",
-  styleUrls: ["./update-info.component.scss"]
+  styleUrls: ["./update-info.component.scss"],
 })
 export class UpdateInfoComponent implements OnInit {
   public infos: Info[] = infos;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 }

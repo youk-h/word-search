@@ -22,9 +22,7 @@ import { AppComponent } from "./app.component";
     HomePageModule,
     RegExpSearchModule,
   ],
-  declarations: [
-    AppComponent,
-  ],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

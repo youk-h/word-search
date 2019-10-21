@@ -7,9 +7,7 @@ describe("MakeGraphService", () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        MakeGraphService,
-      ],
+      providers: [MakeGraphService],
     });
 
     target = TestBed.get(MakeGraphService);

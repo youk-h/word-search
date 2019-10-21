@@ -6,16 +6,8 @@ import { HomePageComponent } from "./home-page.component";
 import { UpdateInfoComponent } from "../../components/update-info/update-info.component";
 
 @NgModule({
-  imports: [
-    FormsModule,
-    CommonModule,
-  ],
-  exports: [
-    HomePageComponent,
-  ],
-  declarations: [
-    HomePageComponent,
-    UpdateInfoComponent,
-  ]
+  imports: [FormsModule, CommonModule],
+  exports: [HomePageComponent],
+  declarations: [HomePageComponent, UpdateInfoComponent],
 })
-export class HomePageModule { }
+export class HomePageModule {}

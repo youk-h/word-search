@@ -1,5 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Index, ExtractedTexts, Text, LoadFile, ExtractedText } from "./extract-text.service.i";
+import {
+  Index,
+  ExtractedTexts,
+  Text,
+  LoadFile,
+  ExtractedText,
+} from "./extract-text.service.i";
 import { SearchConditionService } from "../search-condition/search-condition.service";
 
 @Injectable({
@@ -8,20 +14,23 @@ import { SearchConditionService } from "../search-condition/search-condition.ser
 export class ExtractTextsService {
   public extractedTexts: ExtractedTexts = [];
 
-  constructor(private searchCondtionSvc: SearchConditionService) { }
+  constructor(private searchCondtionSvc: SearchConditionService) {}
 
   public extractTextsFromFile(file: LoadFile, indexes: Index[]) {
     indexes.forEach((index) => {
       this.extractedTexts.push({
         fileName: file.name,
-        text: this.extractTextUsingIndex(file.loadText, index)
+        text: this.extractTextUsingIndex(file.loadText, index),
       } as ExtractedText);
     });
   }
 
   public extractTextUsingIndex(text: Text, index: Index): Text {
     const calcTextLenSvc = new CalculateTextlengthService();
-    const { start, end } = calcTextLenSvc.calculateTextLength(this.searchCondtionSvc.searchNumber, index);
+    const { start, end } = calcTextLenSvc.calculateTextLength(
+      this.searchCondtionSvc.searchNumber,
+      index
+    );
 
     return text.substring(start, end);
   }
@@ -33,7 +42,7 @@ export class SearchMatchService {
     const indices: Index[] = [];
 
     // tslint:disable-next-line:no-conditional-assignment
-    while (temp = regExp.exec(text)) {
+    while ((temp = regExp.exec(text))) {
       indices.push({
         index: temp.index,
         word: temp[0],
@@ -45,12 +54,15 @@ export class SearchMatchService {
 }
 
 export class CalculateTextlengthService {
-  constructor() { }
+  constructor() {}
 
   public calculateTextLength(searchNumber: number, index: Index) {
     const searchWordLength = index.word.length;
     const searchNum = this.adjustSearchNumber(searchNumber, searchWordLength);
-    const halfSearchedNumber = this.calculateHalfSearchNumber(searchNum, searchWordLength);
+    const halfSearchedNumber = this.calculateHalfSearchNumber(
+      searchNum,
+      searchWordLength
+    );
 
     let start = index.index - halfSearchedNumber;
     let end = index.index + (searchWordLength + halfSearchedNumber);
@@ -63,7 +75,10 @@ export class CalculateTextlengthService {
     return { start, end };
   }
 
-  public adjustSearchNumber(searchNumber: number, searchWordLength: number): number {
+  public adjustSearchNumber(
+    searchNumber: number,
+    searchWordLength: number
+  ): number {
     if (searchNumber < searchWordLength) {
       searchNumber = searchWordLength;
     }
@@ -71,7 +86,10 @@ export class CalculateTextlengthService {
     return searchNumber;
   }
 
-  public calculateHalfSearchNumber(searchNumber: number, searchWordLength: number): number {
+  public calculateHalfSearchNumber(
+    searchNumber: number,
+    searchWordLength: number
+  ): number {
     const half = (searchNumber - searchWordLength) / 2;
     return half - this.getDecimalValue(half);
   }
@@ -79,6 +97,6 @@ export class CalculateTextlengthService {
   public getDecimalValue(num: number) {
     const numbers = String(num).split(".");
 
-    return numbers[1] ? (num - Number(numbers[0])) : 0;
+    return numbers[1] ? num - Number(numbers[0]) : 0;
   }
 }

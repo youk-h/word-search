@@ -1,5 +1,8 @@
 import { TestBed } from "@angular/core/testing";
-import { SearchConditionService, GenerateRegExpService } from "./search-condition.service";
+import {
+  SearchConditionService,
+  GenerateRegExpService,
+} from "./search-condition.service";
 
 describe("SearchConditionService", () => {
   let service: SearchConditionService;
@@ -18,7 +21,9 @@ describe("SearchConditionService", () => {
       // act
       service.genRegExp(words);
 
-      expect(GenerateRegExpService.prototype.convertWordsToRegExp).toHaveBeenCalledWith(words);
+      expect(
+        GenerateRegExpService.prototype.convertWordsToRegExp
+      ).toHaveBeenCalledWith(words);
     });
   });
 
@@ -27,12 +32,7 @@ describe("SearchConditionService", () => {
 
     beforeEach(() => {
       targetWord = "";
-      service.wordList = [
-        "import",
-        "export",
-        "public",
-        "private",
-      ];
+      service.wordList = ["import", "export", "public", "private"];
     });
 
     it("should return true when word is in property wordList", () => {

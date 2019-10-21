@@ -16,9 +16,7 @@ export class CreateWordComponent implements OnInit, OnDestroy {
   public wordList$ = new Subject<string[]>();
   public subscription: Subscription;
 
-  constructor(
-    private searchConditionSvc: SearchConditionService,
-  ) { }
+  constructor(private searchConditionSvc: SearchConditionService) {}
 
   ngOnInit() {
     this.subscription = this.wordList$.subscribe(
@@ -26,7 +24,7 @@ export class CreateWordComponent implements OnInit, OnDestroy {
         this.wordList = wordList;
         this.searchConditionSvc.genRegExp(this.wordList);
       },
-      (error) => console.log(error),
+      (error) => console.log(error)
     );
   }
 
@@ -57,7 +55,9 @@ export class CreateWordComponent implements OnInit, OnDestroy {
   }
 
   public onDeleteWordFromWordList(deleteWord: string) {
-    this.searchConditionSvc.wordList = this.searchConditionSvc.wordList.filter((word) => word !== deleteWord);
+    this.searchConditionSvc.wordList = this.searchConditionSvc.wordList.filter(
+      (word) => word !== deleteWord
+    );
     this.wordList$.next(this.searchConditionSvc.wordList);
   }
 

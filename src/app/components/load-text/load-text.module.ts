@@ -1,13 +1,8 @@
 import { NgModule } from "@angular/core";
 
-import {
-  FormsModule,
-  ReactiveFormsModule
-} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import {
-  CommonModule,
-} from "@angular/common";
+import { CommonModule } from "@angular/common";
 
 import {
   MatButtonModule,
@@ -18,9 +13,7 @@ import {
   MatProgressBarModule,
 } from "@angular/material";
 
-import {
-  MatStepperModule,
-} from "@angular/material/stepper";
+import { MatStepperModule } from "@angular/material/stepper";
 
 import { LoadFileComponent } from "../load-file/load-file.component";
 import { LoadFolderComponent } from "../load-folder/load-folder.component";
@@ -39,13 +32,7 @@ import { LoadTextComponent } from "./load-text.component";
     MatIconModule,
     MatProgressBarModule,
   ],
-  exports: [
-    LoadTextComponent,
-  ],
-  declarations: [
-    LoadTextComponent,
-    LoadFileComponent,
-    LoadFolderComponent,
-  ],
+  exports: [LoadTextComponent],
+  declarations: [LoadTextComponent, LoadFileComponent, LoadFolderComponent],
 })
-export class LoadTextModule { }
+export class LoadTextModule {}
