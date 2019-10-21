@@ -8,7 +8,7 @@ import { AnalyzeTextsService } from "../../services/analyze-texts/analyze-texts.
 @Component({
   selector: "app-search-word",
   templateUrl: "./search-word.component.html",
-  styleUrls: ["./search-word.component.scss"]
+  styleUrls: ["./search-word.component.scss"],
 })
 export class SearchWordComponent {
   public searchedNumber: SearchedNumber = 0;
@@ -16,18 +16,26 @@ export class SearchWordComponent {
   public constructor(
     private fileService: LoadFileService,
     private searchCondtionService: SearchConditionService,
-    private analyzeTextSvc: AnalyzeTextsService,
-  ) { }
+    private analyzeTextSvc: AnalyzeTextsService
+  ) {}
 
   public onSearch() {
-    if (!this.checkConditionToSearch(this.fileService, this.searchCondtionService)) {
+    if (
+      !this.checkConditionToSearch(this.fileService, this.searchCondtionService)
+    ) {
       return;
     }
 
-    this.searchedNumber = this.analyzeTextSvc.analyzeTextOfFiles(this.fileService.loadFiles, this.searchCondtionService.regExp);
+    this.searchedNumber = this.analyzeTextSvc.analyzeTextOfFiles(
+      this.fileService.loadFiles,
+      this.searchCondtionService.regExp
+    );
   }
 
-  public checkConditionToSearch(fileService: LoadFileService, searchCondition: SearchConditionService): boolean {
+  public checkConditionToSearch(
+    fileService: LoadFileService,
+    searchCondition: SearchConditionService
+  ): boolean {
     if (!searchCondition.regExp) {
       window.alert("ステップ１で検索文字を指定してください");
       return false;

@@ -10,21 +10,23 @@ import { Buffer } from "buffer";
 import { LoadFile, LoadResult } from "./load-file.service.i";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class LoadFileService {
   public loadFiles: LoadFile[] = [];
   public loadResult: LoadResult = { fileNumber: 0, charNumber: 0 };
 
-  constructor() { }
+  constructor() {}
 
   public loadTextFromEachFiles$(files: File[]): Observable<LoadFile[]> {
     return from(files).pipe(
-      mergeMap((file: File) => this.loadTextFromFile$(file).pipe(
-        map((text) => this.saveLoadedText(file, text)),
-      )),
+      mergeMap((file: File) =>
+        this.loadTextFromFile$(file).pipe(
+          map((text) => this.saveLoadedText(file, text))
+        )
+      ),
       toArray(),
-      map((loadFiles: LoadFile[]) => this.loadFiles = loadFiles),
+      map((loadFiles: LoadFile[]) => (this.loadFiles = loadFiles))
     );
   }
 
@@ -32,7 +34,7 @@ export class LoadFileService {
     return from(this.loadArrayBuffer(file)).pipe(
       map((arrayBuffer: ArrayBuffer) => {
         return this.convertArrayBufferToUnicodeString(arrayBuffer);
-      }),
+      })
     );
   }
 
@@ -41,10 +43,13 @@ export class LoadFileService {
     reader.readAsArrayBuffer(file);
 
     return new Promise((resolve, reject) => {
-      reader.onload = () => { resolve(reader.result); };
-      reader.onerror = () => { reject(reader.error); };
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = () => {
+        reject(reader.error);
+      };
     });
-
   }
 
   convertArrayBufferToUnicodeString(arrayBuffer: ArrayBuffer): string {
@@ -77,7 +82,10 @@ export class LoadFileService {
   public saveLoadResult(loadFiles: LoadFile[]) {
     this.loadResult = {
       fileNumber: loadFiles.length,
-      charNumber: loadFiles.reduce((charNum, file) => charNum + file.loadText.length, 0),
+      charNumber: loadFiles.reduce(
+        (charNum, file) => charNum + file.loadText.length,
+        0
+      ),
     };
   }
 

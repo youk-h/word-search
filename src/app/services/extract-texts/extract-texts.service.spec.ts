@@ -1,6 +1,10 @@
 import { TestBed } from "@angular/core/testing";
 
-import { ExtractTextsService, CalculateTextlengthService, SearchMatchService } from "./extract-texts.service";
+import {
+  ExtractTextsService,
+  CalculateTextlengthService,
+  SearchMatchService,
+} from "./extract-texts.service";
 import { SearchConditionService } from "../search-condition/search-condition.service";
 import { LoadFile, Index, Text } from "./extract-text.service.i";
 
@@ -28,10 +32,7 @@ describe("", () => {
       });
 
       it("should process against all indexes", () => {
-        indexes = [
-          { index: 1, word: "1" },
-          { index: 2, word: "2" },
-        ];
+        indexes = [{ index: 1, word: "1" }, { index: 2, word: "2" }];
 
         jest.spyOn(service, "extractTextUsingIndex");
 
@@ -70,13 +71,18 @@ describe("", () => {
       describe("This calculates text length that should be retrieved", () => {
         it("should call calculateTextLength", () => {
           // arrange
-          jest.spyOn(CalculateTextlengthService.prototype, "calculateTextLength");
+          jest.spyOn(
+            CalculateTextlengthService.prototype,
+            "calculateTextLength"
+          );
 
           // act
           service.extractTextUsingIndex(text, index);
 
           // assert
-          expect(CalculateTextlengthService.prototype.calculateTextLength).toHaveBeenCalledWith(searchConditionSvc.searchNumber, index);
+          expect(
+            CalculateTextlengthService.prototype.calculateTextLength
+          ).toHaveBeenCalledWith(searchConditionSvc.searchNumber, index);
         });
       });
 
@@ -84,7 +90,9 @@ describe("", () => {
         it("should extract (end - start) charactor text", () => {
           // arrange
           text = "0123456789";
-          jest.spyOn(CalculateTextlengthService.prototype, "calculateTextLength").mockReturnValueOnce({ start: 2, end: 5 });
+          jest
+            .spyOn(CalculateTextlengthService.prototype, "calculateTextLength")
+            .mockReturnValueOnce({ start: 2, end: 5 });
           const expected = "234";
 
           // act
@@ -97,7 +105,9 @@ describe("", () => {
         it("should change start to 0, then extract text when start is minus number", () => {
           // arrange
           text = "0123456789";
-          jest.spyOn(CalculateTextlengthService.prototype, "calculateTextLength").mockReturnValueOnce({ start: -5, end: 5 });
+          jest
+            .spyOn(CalculateTextlengthService.prototype, "calculateTextLength")
+            .mockReturnValueOnce({ start: -5, end: 5 });
           const expected = "01234";
 
           // act
@@ -110,7 +120,9 @@ describe("", () => {
         it("should change end to text length, then extract text when end is greater than text length", () => {
           // arrange
           text = "0123456789";
-          jest.spyOn(CalculateTextlengthService.prototype, "calculateTextLength").mockReturnValueOnce({ start: 2, end: 10 });
+          jest
+            .spyOn(CalculateTextlengthService.prototype, "calculateTextLength")
+            .mockReturnValueOnce({ start: 2, end: 10 });
           const expected = "23456789";
 
           // act
@@ -214,7 +226,10 @@ describe("", () => {
           const expected = searchWordLength;
 
           // act
-          const actual = service.adjustSearchNumber(searchNumber, searchWordLength);
+          const actual = service.adjustSearchNumber(
+            searchNumber,
+            searchWordLength
+          );
 
           // assert
           expect(actual).toBe(expected);
@@ -228,7 +243,10 @@ describe("", () => {
           const expected = searchNumber;
 
           // act
-          const actual = service.adjustSearchNumber(searchNumber, searchWordLength);
+          const actual = service.adjustSearchNumber(
+            searchNumber,
+            searchWordLength
+          );
 
           // assert
           expect(actual).toBe(expected);
@@ -242,7 +260,10 @@ describe("", () => {
           const expected = searchNumber;
 
           // act
-          const actual = service.adjustSearchNumber(searchNumber, searchWordLength);
+          const actual = service.adjustSearchNumber(
+            searchNumber,
+            searchWordLength
+          );
 
           // assert
           expect(actual).toBe(expected);
@@ -262,7 +283,10 @@ describe("", () => {
         const expected = 3;
 
         // act
-        const actual = service.calculateHalfSearchNumber(searchNumber, searchWordLength);
+        const actual = service.calculateHalfSearchNumber(
+          searchNumber,
+          searchWordLength
+        );
 
         // assert
         expect(actual).toBe(expected);
@@ -276,7 +300,10 @@ describe("", () => {
         const expected = 0;
 
         // act
-        const actual = service.calculateHalfSearchNumber(searchNumber, searchWordLength);
+        const actual = service.calculateHalfSearchNumber(
+          searchNumber,
+          searchWordLength
+        );
 
         // assert
         expect(actual).toBe(expected);
@@ -290,7 +317,10 @@ describe("", () => {
         const expected = 0;
 
         // act
-        const actual = service.calculateHalfSearchNumber(searchNumber, searchWordLength);
+        const actual = service.calculateHalfSearchNumber(
+          searchNumber,
+          searchWordLength
+        );
 
         // assert
         expect(actual).toBe(expected);

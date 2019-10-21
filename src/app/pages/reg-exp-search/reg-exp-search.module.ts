@@ -1,15 +1,8 @@
-import {
-  NgModule,
-} from "@angular/core";
+import { NgModule } from "@angular/core";
 
-import {
-  FormsModule,
-  ReactiveFormsModule
-} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import {
-  CommonModule,
-} from "@angular/common";
+import { CommonModule } from "@angular/common";
 
 import {
   MatButtonModule,
@@ -20,13 +13,9 @@ import {
   MatProgressBarModule,
 } from "@angular/material";
 
-import {
-  MatStepperModule,
-} from "@angular/material/stepper";
+import { MatStepperModule } from "@angular/material/stepper";
 
-import {
-  GoogleChartsModule,
-} from "angular-google-charts";
+import { GoogleChartsModule } from "angular-google-charts";
 
 import { LoadTextModule } from "../../components/load-text/load-text.module";
 
@@ -63,4 +52,4 @@ import { CheckNumberDirective } from "../../directives/check-number.directive";
     CheckNumberDirective,
   ],
 })
-export class RegExpSearchModule { }
+export class RegExpSearchModule {}

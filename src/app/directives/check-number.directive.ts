@@ -1,10 +1,10 @@
 import { Directive, ElementRef, HostListener } from "@angular/core";
 
 @Directive({
-  selector: "[appMyCheckNumber]"
+  selector: "[appMyCheckNumber]",
 })
 export class CheckNumberDirective {
-  constructor(el: ElementRef) { }
+  constructor(el: ElementRef) {}
 
   @HostListener("input", ["$event"]) onInput(event) {
     const word = event.data;

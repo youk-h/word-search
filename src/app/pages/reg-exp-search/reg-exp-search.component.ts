@@ -13,7 +13,7 @@ import { MakeGraphService } from "../../services/make-graph/make-graph.service";
 @Component({
   selector: "app-reg-exp-search",
   templateUrl: "./reg-exp-search.component.html",
-  styleUrls: ["./reg-exp-search.component.scss"]
+  styleUrls: ["./reg-exp-search.component.scss"],
 })
 export class RegExpSearchComponent implements OnInit {
   @ViewChild(CreateWordComponent) createWordComponent: CreateWordComponent;
@@ -31,24 +31,24 @@ export class RegExpSearchComponent implements OnInit {
     private searchConditionSvc: SearchConditionService,
     private loadFileSvc: LoadFileService,
     private analyzeTextSvc: AnalyzeTextsService,
-    private makeGraphSvc: MakeGraphService,
-  ) { }
+    private makeGraphSvc: MakeGraphService
+  ) {}
 
   ngOnInit() {
     this.firstFormGroup = this.formBuilder.group({
-      firstCtrl: ["", Validators.required]
+      firstCtrl: ["", Validators.required],
     });
     this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ["", Validators.required]
+      secondCtrl: ["", Validators.required],
     });
     this.thirdFormGroup = this.formBuilder.group({
-      thirdCtrl: ["", Validators.required]
+      thirdCtrl: ["", Validators.required],
     });
     this.fourthFormGroup = this.formBuilder.group({
-      fourthCtrl: ["", Validators.required]
+      fourthCtrl: ["", Validators.required],
     });
     this.fifthFormGroup = this.formBuilder.group({
-      fifthCtrl: ["", Validators.required]
+      fifthCtrl: ["", Validators.required],
     });
   }
 

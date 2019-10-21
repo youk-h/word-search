@@ -16,15 +16,9 @@ describe("SearchwordComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        MatIconModule,
-      ],
+      imports: [MatIconModule],
       declarations: [SearchWordComponent],
-      providers: [
-        LoadFileService,
-        SearchConditionService,
-        AnalyzeTextsService,
-      ],
+      providers: [LoadFileService, SearchConditionService, AnalyzeTextsService],
     }).compileComponents();
   }));
 
@@ -52,18 +46,19 @@ describe("SearchwordComponent", () => {
   describe("onSearch", () => {
     it("should call checkConditionTosearch with services", () => {
       // arrange
-      jest.spyOn(SearchWordComponent.prototype, "checkConditionToSearch").mockReturnValue(false);
+      jest
+        .spyOn(SearchWordComponent.prototype, "checkConditionToSearch")
+        .mockReturnValue(false);
 
-      const expected = [
-        loadFileSvc,
-        searchConditionSvc
-      ];
+      const expected = [loadFileSvc, searchConditionSvc];
 
       // act
       components.onSearch();
 
       // assert
-      expect(SearchWordComponent.prototype.checkConditionToSearch).toHaveBeenCalledWith(...expected);
+      expect(
+        SearchWordComponent.prototype.checkConditionToSearch
+      ).toHaveBeenCalledWith(...expected);
     });
 
     it("should call analyzeTextSvc.prototype.analyzeTextOfFiles when checkConditionToSearch returns true", () => {
@@ -73,25 +68,28 @@ describe("SearchwordComponent", () => {
       const loadFiles = [];
       loadFileSvc.loadFiles = loadFiles;
 
-      jest.spyOn(SearchWordComponent.prototype, "checkConditionToSearch").mockReturnValue(true);
-      jest.spyOn(AnalyzeTextsService.prototype, "analyzeTextOfFiles").mockReturnValue(1);
+      jest
+        .spyOn(SearchWordComponent.prototype, "checkConditionToSearch")
+        .mockReturnValue(true);
+      jest
+        .spyOn(AnalyzeTextsService.prototype, "analyzeTextOfFiles")
+        .mockReturnValue(1);
 
-      const expected = [
-        loadFiles,
-        regExp,
-      ];
+      const expected = [loadFiles, regExp];
 
       // act
       components.onSearch();
 
       // assert
-      expect(AnalyzeTextsService.prototype.analyzeTextOfFiles).toHaveBeenCalledWith(...expected);
+      expect(
+        AnalyzeTextsService.prototype.analyzeTextOfFiles
+      ).toHaveBeenCalledWith(...expected);
     });
   });
 
   describe("checkConditionToSearch", () => {
     beforeEach(() => {
-      window.alert = jest.fn((str: string) => { });
+      window.alert = jest.fn((str: string) => {});
       searchConditionSvc.regExp = new RegExp("^$");
       searchConditionSvc.searchNumber = 1;
       loadFileSvc.loadFiles = [{} as LoadFile];
@@ -117,7 +115,10 @@ describe("SearchwordComponent", () => {
       const expected = false;
 
       // act
-      const actual = components.checkConditionToSearch(loadFileSvc, searchConditionSvc);
+      const actual = components.checkConditionToSearch(
+        loadFileSvc,
+        searchConditionSvc
+      );
 
       // assert
       expect(actual).toEqual(expected);
@@ -143,7 +144,10 @@ describe("SearchwordComponent", () => {
       const expected = false;
 
       // act
-      const actual = components.checkConditionToSearch(loadFileSvc, searchConditionSvc);
+      const actual = components.checkConditionToSearch(
+        loadFileSvc,
+        searchConditionSvc
+      );
 
       // assert
       expect(actual).toEqual(expected);
@@ -169,7 +173,10 @@ describe("SearchwordComponent", () => {
       const expected = false;
 
       // act
-      const actual = components.checkConditionToSearch(loadFileSvc, searchConditionSvc);
+      const actual = components.checkConditionToSearch(
+        loadFileSvc,
+        searchConditionSvc
+      );
 
       // assert
       expect(actual).toEqual(expected);
@@ -180,7 +187,10 @@ describe("SearchwordComponent", () => {
       const expected = true;
 
       // act
-      const actual = components.checkConditionToSearch(loadFileSvc, searchConditionSvc);
+      const actual = components.checkConditionToSearch(
+        loadFileSvc,
+        searchConditionSvc
+      );
 
       // assert
       expect(actual).toEqual(expected);

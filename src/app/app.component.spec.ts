@@ -25,12 +25,8 @@ describe("AppComponent", () => {
         HomePageModule,
         RegExpSearchModule,
       ],
-      declarations: [
-        AppComponent
-      ],
-      providers: [
-        { provide: APP_BASE_HREF, useValue: "/" },
-      ]
+      declarations: [AppComponent],
+      providers: [{ provide: APP_BASE_HREF, useValue: "/" }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
@@ -44,11 +40,7 @@ describe("AppComponent", () => {
 
   it("should go to url", () => {
     const routes = (fixture.nativeElement as HTMLElement).querySelectorAll("a");
-    const paths = [
-      "/",
-      "/reg-exp",
-      "/word-class",
-    ];
+    const paths = ["/", "/reg-exp", "/word-class"];
     routes.forEach((route, i) => {
       const href = (route as HTMLAnchorElement).getAttribute("href");
       expect(href).toEqual(paths[i]);
