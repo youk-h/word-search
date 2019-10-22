@@ -14,7 +14,7 @@ import {
   MatProgressBarModule,
 } from "@angular/material";
 
-import { RegExpSearchComponent } from "./reg-exp-search.component";
+import { RegExpSearchPageComponent } from "./reg-exp-search.component";
 import { SearchWordComponent } from "../../components/search-word/search-word.component";
 import { LoadFolderComponent } from "../../components/load-folder/load-folder.component";
 import { DownloadFileComponent } from "../../components/download-file/download-file.component";
@@ -30,9 +30,9 @@ import { LoadFileService } from "../../services/load-file/load-file.service";
 import { AnalyzeTextsService } from "../../services/analyze-texts/analyze-texts.service";
 import { MakeGraphService } from "../../services/make-graph/make-graph.service";
 
-describe("RegExpSearchComponent", () => {
-  let fixture: ComponentFixture<RegExpSearchComponent>;
-  let components: RegExpSearchComponent;
+describe("RegExpSearchPageComponent", () => {
+  let fixture: ComponentFixture<RegExpSearchPageComponent>;
+  let components: RegExpSearchPageComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -55,7 +55,7 @@ describe("RegExpSearchComponent", () => {
         GoogleChartsModule.forRoot(),
       ],
       declarations: [
-        RegExpSearchComponent,
+        RegExpSearchPageComponent,
         SearchWordComponent,
         LoadFolderComponent,
         DownloadFileComponent,
@@ -68,12 +68,12 @@ describe("RegExpSearchComponent", () => {
 
   beforeEach(() => {
     jest.restoreAllMocks();
-    fixture = TestBed.createComponent(RegExpSearchComponent);
+    fixture = TestBed.createComponent(RegExpSearchPageComponent);
     components = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it("should create RegExpSearchComponent", () => {
+  it("should create RegExpSearchPageComponent", () => {
     expect(fixture).toBeDefined();
   });
 

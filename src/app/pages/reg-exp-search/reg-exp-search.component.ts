@@ -15,7 +15,7 @@ import { MakeGraphService } from "../../services/make-graph/make-graph.service";
   templateUrl: "./reg-exp-search.component.html",
   styleUrls: ["./reg-exp-search.component.scss"],
 })
-export class RegExpSearchComponent implements OnInit {
+export class RegExpSearchPageComponent implements OnInit {
   @ViewChild(CreateWordComponent) createWordComponent: CreateWordComponent;
   @ViewChild(LoadTextComponent) loadTextComponent: LoadTextComponent;
   @ViewChild(SearchWordComponent) searchWordComponent: SearchWordComponent;

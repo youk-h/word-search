@@ -8,7 +8,7 @@ import { MatStepperModule } from "@angular/material/stepper";
 
 import { MY_ROUTES } from "./app.routing";
 import { HomePageModule } from "./pages/home-page/home-page.module";
-import { RegExpSearchModule } from "./pages/reg-exp-search/reg-exp-search.module";
+import { RegExpSearchPageModule } from "./pages/reg-exp-search/reg-exp-search.module";
 import { APP_BASE_HREF } from "@angular/common";
 
 describe("AppComponent", () => {
@@ -23,7 +23,7 @@ describe("AppComponent", () => {
         MatStepperModule,
         MY_ROUTES,
         HomePageModule,
-        RegExpSearchModule,
+        RegExpSearchPageModule,
       ],
       declarations: [AppComponent],
       providers: [{ provide: APP_BASE_HREF, useValue: "/" }],

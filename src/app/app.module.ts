@@ -8,7 +8,8 @@ import { MatStepperModule } from "@angular/material/stepper";
 import { MY_ROUTES } from "./app.routing";
 
 import { HomePageModule } from "./pages/home-page/home-page.module";
-import { RegExpSearchModule } from "./pages/reg-exp-search/reg-exp-search.module";
+import { RegExpSearchPageModule } from "./pages/reg-exp-search/reg-exp-search.module";
+import { MorphologicalAnalysisPageModule } from "./pages/morphological-analysis/morphological-analysis.module";
 
 import { AppComponent } from "./app.component";
 
@@ -20,7 +21,8 @@ import { AppComponent } from "./app.component";
     MatStepperModule,
     MY_ROUTES,
     HomePageModule,
-    RegExpSearchModule,
+    RegExpSearchPageModule,
+    MorphologicalAnalysisPageModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

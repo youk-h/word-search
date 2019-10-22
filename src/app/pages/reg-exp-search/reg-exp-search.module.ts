@@ -19,7 +19,7 @@ import { GoogleChartsModule } from "angular-google-charts";
 
 import { LoadTextModule } from "../../components/load-text/load-text.module";
 
-import { RegExpSearchComponent } from "./reg-exp-search.component";
+import { RegExpSearchPageComponent } from "./reg-exp-search.component";
 import { SearchWordComponent } from "../../components/search-word/search-word.component";
 import { DownloadFileComponent } from "../../components/download-file/download-file.component";
 import { CreateWordComponent } from "../../components/create-word/create-word.component";
@@ -43,7 +43,7 @@ import { CheckNumberDirective } from "../../directives/check-number.directive";
     LoadTextModule,
   ],
   declarations: [
-    RegExpSearchComponent,
+    RegExpSearchPageComponent,
     SearchWordComponent,
     DownloadFileComponent,
     CreateWordComponent,
@@ -52,4 +52,4 @@ import { CheckNumberDirective } from "../../directives/check-number.directive";
     CheckNumberDirective,
   ],
 })
-export class RegExpSearchModule {}
+export class RegExpSearchPageModule {}
