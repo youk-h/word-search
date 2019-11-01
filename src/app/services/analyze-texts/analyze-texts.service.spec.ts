@@ -149,7 +149,11 @@ describe("AnalyzeTextsService", () => {
 
       it("should caluculate all number of graph data at last", () => {
         // arrange
-        extractTextSvc.extractedTexts = ["1", "2", "3"];
+        extractTextSvc.extractedTexts = [
+          { fileName: "file1", text: "1", },
+          { fileName: "file2", text: "2", },
+          { fileName: "file3", text: "3", },
+        ];
         const expected = extractTextSvc.extractedTexts.length;
 
         // act
@@ -164,7 +168,10 @@ describe("AnalyzeTextsService", () => {
   describe("reset", () => {
     it("should reset data about search result", () => {
       // arrange
-      extractTextSvc.extractedTexts = ["1", "2"];
+      extractTextSvc.extractedTexts = [
+        { fileName: "file1", text: "1", },
+        { fileName: "file2", text: "2", },
+      ];
       makeGraphSvc.graphData = [["hoge", 1], ["moge", 2]];
 
       const expected = [];

@@ -16,7 +16,6 @@ import {
 
 import { RegExpSearchPageComponent } from "./reg-exp-search.component";
 import { SearchWordComponent } from "../../components/search-word/search-word.component";
-import { LoadFolderComponent } from "../../components/load-folder/load-folder.component";
 import { DownloadFileComponent } from "../../components/download-file/download-file.component";
 import { CreateWordComponent } from "../../components/create-word/create-word.component";
 import { GraphComponent } from "../../components/graph/graph.component";
@@ -29,6 +28,8 @@ import { GoogleChartsModule } from "angular-google-charts";
 import { LoadFileService } from "../../services/load-file/load-file.service";
 import { AnalyzeTextsService } from "../../services/analyze-texts/analyze-texts.service";
 import { MakeGraphService } from "../../services/make-graph/make-graph.service";
+import { LoadTextComponent } from "../../components/load-text/load-text.component";
+import { LoadTextModule } from "../../components/load-text/load-text.module";
 
 describe("RegExpSearchPageComponent", () => {
   let fixture: ComponentFixture<RegExpSearchPageComponent>;
@@ -53,11 +54,11 @@ describe("RegExpSearchPageComponent", () => {
         MatIconModule,
         MatProgressBarModule,
         GoogleChartsModule.forRoot(),
+        LoadTextModule,
       ],
       declarations: [
         RegExpSearchPageComponent,
         SearchWordComponent,
-        LoadFolderComponent,
         DownloadFileComponent,
         CreateWordComponent,
         GraphComponent,
@@ -106,17 +107,17 @@ describe("RegExpSearchPageComponent", () => {
         "button.resetLoadFolder"
       );
 
-      jest.spyOn(LoadFolderComponent.prototype, "reset");
+      jest.spyOn(LoadTextComponent.prototype, "reset");
       jest.spyOn(LoadFileService.prototype, "reset");
-      jest.spyOn(components, "onresetLoadFolder");
+      jest.spyOn(components, "onResetLoadFolder");
 
       // act
       button.click();
       fixture.detectChanges();
 
       // assert
-      expect(components.onresetLoadFolder).toHaveBeenCalled();
-      expect(LoadFolderComponent.prototype.reset).toHaveBeenCalled();
+      expect(components.onResetLoadFolder).toHaveBeenCalled();
+      expect(LoadTextComponent.prototype.reset).toHaveBeenCalled();
       expect(LoadFileService.prototype.reset).toHaveBeenCalled();
     });
   });
@@ -146,14 +147,14 @@ describe("RegExpSearchPageComponent", () => {
   });
 
   describe("onResetAll", () => {
-    it("should reset data when reset last button is clicked", () => {
+    it("should reset data when last reset button is clicked", () => {
       // arrange
       const button: HTMLButtonElement = (fixture.nativeElement as HTMLElement).querySelector(
         "button.resetAll"
       );
 
       jest.spyOn(components, "onResetSearchCondition");
-      jest.spyOn(components, "onresetLoadFolder");
+      jest.spyOn(components, "onResetLoadFolder");
       jest.spyOn(components, "onResetSearchResult");
       jest.spyOn(components, "onResetAll");
 
@@ -164,7 +165,7 @@ describe("RegExpSearchPageComponent", () => {
       // assert
       expect(components.onResetSearchResult).toHaveBeenCalled();
       expect(components.onResetSearchCondition).toHaveBeenCalled();
-      expect(components.onresetLoadFolder).toHaveBeenCalled();
+      expect(components.onResetLoadFolder).toHaveBeenCalled();
       expect(components.onResetSearchResult).toHaveBeenCalled();
     });
   });

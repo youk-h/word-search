@@ -143,7 +143,9 @@ describe("DownloadFileComponent", () => {
       it("should call makeOutputData when extracteText.length !== 0", () => {
         // arrange
         window.alert = jest.fn();
-        extractTextsSvc.extractedTexts = [""];
+        extractTextsSvc.extractedTexts = [
+          { fileName: "file1", text: "1", },
+        ];
         jest
           .spyOn(MakeOutputDataService.prototype, "makeOutputData")
           .mockReturnValue("");
@@ -163,7 +165,9 @@ describe("DownloadFileComponent", () => {
       it("should call window.URL.createObjectURL", () => {
         // arrange
         const exportData = "import";
-        extractTextsSvc.extractedTexts = [""];
+        extractTextsSvc.extractedTexts = [
+          { fileName: "file1", text: "1", },
+        ];
         jest
           .spyOn(MakeOutputDataService.prototype, "makeOutputData")
           .mockReturnValue(exportData);
@@ -182,7 +186,9 @@ describe("DownloadFileComponent", () => {
       it("should set href created", () => {
         // arrange
         const href = "url";
-        extractTextsSvc.extractedTexts = [""];
+        extractTextsSvc.extractedTexts = [
+          { fileName: "file1", text: "1", },
+        ];
         jest.spyOn(window.URL, "createObjectURL").mockReturnValue(href);
 
         const expected = href;

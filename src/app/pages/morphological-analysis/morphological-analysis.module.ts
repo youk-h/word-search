@@ -9,4 +9,4 @@ import { MorphologicalAnalysisPageComponent } from "./morphological-analysis.com
   exports: [MorphologicalAnalysisPageComponent],
   declarations: [MorphologicalAnalysisPageComponent],
 })
-export class MorphologicalAnalysisPageModule {}
+export class MorphologicalAnalysisPageModule { }

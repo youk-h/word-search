@@ -13,7 +13,7 @@ export class LoadFileComponent {
   public loadResult;
   public loading = false;
 
-  constructor(private fileService: LoadFileService) {}
+  constructor(private fileService: LoadFileService) { }
 
   public onLoadFile(folder: { [key: number]: File }): void {
     this.loading = true;

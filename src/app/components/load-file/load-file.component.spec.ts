@@ -42,7 +42,7 @@ describe("LoadFileComponent", () => {
     expect(loadFileSvc).toBeTruthy();
   });
 
-  describe("onLoadFiles", () => {
+  describe("onLoadFile", () => {
     it("should call convertObjectToArray", () => {
       // arrange
       const files = {};
@@ -53,7 +53,7 @@ describe("LoadFileComponent", () => {
       const expected = files;
 
       // act
-      components.onLoadFiles(files);
+      components.onLoadFile(files);
 
       // assert
       expect(
@@ -68,13 +68,13 @@ describe("LoadFileComponent", () => {
         .spyOn(LoadFileService.prototype, "convertObjectToArray")
         .mockReturnValue([]);
       jest
-        .spyOn(LoadFileService.prototype, "loadTextOfEachFiles$")
+        .spyOn(LoadFileService.prototype, "loadTextFromEachFiles$")
         .mockReturnValue(of());
 
       const expected = files;
 
       // act
-      components.onLoadFiles(files);
+      components.onLoadFile(files);
 
       // assert
       expect(
@@ -89,13 +89,13 @@ describe("LoadFileComponent", () => {
         .spyOn(LoadFileService.prototype, "convertObjectToArray")
         .mockReturnValue([]);
       jest
-        .spyOn(LoadFileService.prototype, "loadTextOfEachFiles$")
+        .spyOn(LoadFileService.prototype, "loadTextFromEachFiles$")
         .mockReturnValue(of());
 
       const expected = files;
 
       // act
-      components.onLoadFiles(files);
+      components.onLoadFile(files);
 
       // assert
       expect(
@@ -103,24 +103,24 @@ describe("LoadFileComponent", () => {
       ).toHaveBeenCalledWith(expected);
     });
 
-    it("should call loadTextOfEachFiles$", () => {
+    it("should call loadTextFromEachFiles$", () => {
       // arrange
       const files = [];
       jest
         .spyOn(LoadFileService.prototype, "convertObjectToArray")
         .mockReturnValue([]);
       jest
-        .spyOn(LoadFileService.prototype, "loadTextOfEachFiles$")
+        .spyOn(LoadFileService.prototype, "loadTextFromEachFiles$")
         .mockReturnValue(of());
 
       const expected = files;
 
       // act
-      components.onLoadFiles(files);
+      components.onLoadFile(files);
 
       // assert
       expect(
-        LoadFileService.prototype.loadTextOfEachFiles$
+        LoadFileService.prototype.loadTextFromEachFiles$
       ).toHaveBeenCalledWith(expected);
     });
   });
