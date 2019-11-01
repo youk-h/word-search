@@ -1,0 +1,9 @@
+<div class="load-folda" *ngIf="!loading">
+  <input mat-input type="file" style="display: none" #fileInput (change)="onLoadFile($event.target.files)" />
+  <button mat-raised-button color="primary" (click)="onClickFileInputButton()">
+    <mat-icon>file_copy</mat-icon>
+    ファイルを選択
+  </button>
+</div>
+
+<mat-progress-bar class="progress-bar" *ngIf="loading" mode="buffer"></mat-progress-bar>

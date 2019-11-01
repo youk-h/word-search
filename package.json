@@ -1,6 +1,6 @@
 {
   "name": "word-search",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,6 +10,8 @@
     "test": "jest --watchAll",
     "test:coverage": "jest --coverage",
     "lint": "tslint --project . --fix",
+    "prettier": "prettier --find-config-path ./.prettierrc",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "e2e": "ng e2e"
   },
   "jest": {
@@ -50,9 +52,12 @@
     "firebase-tools": "^7.6.1",
     "jest": "^24.8.0",
     "jest-preset-angular": "^7.1.0",
+    "prettier": "^1.18.2",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
     "typescript": "~3.2.2"
   }
 }

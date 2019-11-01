@@ -17,13 +17,17 @@ describe("ExportFileService", () => {
       target.formatFileName(fileName);
 
       // assert
-      expect(ExportFileService.prototype.removeDotTxt).toHaveBeenCalledWith(fileName);
+      expect(ExportFileService.prototype.removeDotTxt).toHaveBeenCalledWith(
+        fileName
+      );
     });
 
     it("should return string with .txt in end", () => {
       // arrange
       const fileName = "file.txt";
-      jest.spyOn(ExportFileService.prototype, "removeDotTxt").mockReturnValue("file");
+      jest
+        .spyOn(ExportFileService.prototype, "removeDotTxt")
+        .mockReturnValue("file");
 
       const expected = "file.txt";
 

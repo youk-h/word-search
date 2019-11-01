@@ -1,11 +1,15 @@
 <div class="file-name">
   <mat-form-field>
-    <input matInput [(ngModel)]="saveFileName" placeholder="テキストファイル名(入力文字で確定)" (keyup.enter)="onDecideFileName(saveFileName)" (blur)="onDecideFileName(saveFileName)">
+    <input matInput autocomplete="off" [(ngModel)]="saveFileName" placeholder="テキストファイル名(入力文字で確定)" (keyup.enter)="onDecideFileName(saveFileName)" (blur)="onDecideFileName(saveFileName)">
   </mat-form-field>
 </div>
 
 <div class="download-file">
-  <button mat-raised-button color="primary" (click)="onClickFileDownloadButton()">
+  <button mat-raised-button *ngIf="saveFileName" color="primary" (click)="onClickFileDownloadButton()">
+    <mat-icon>get_app</mat-icon>
+    ダウンロード
+  </button>
+  <button mat-raised-button *ngIf="!saveFileName" color="disabled">
     <mat-icon>get_app</mat-icon>
     ダウンロード
   </button>

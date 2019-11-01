@@ -9,4 +9,9 @@ export interface Index {
 
 export type Text = string;
 
-export type ExtractedTexts = Text[];
+export interface ExtractedText {
+  fileName: string;
+  text: Text;
+}
+
+export type ExtractedTexts = ExtractedText[];

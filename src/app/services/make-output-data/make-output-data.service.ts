@@ -1,18 +1,21 @@
 import { Injectable } from "@angular/core";
 
-import { Text } from "./make-output.service.i";
+import { Text, ExtractedTexts } from "./make-output.service.i";
 
 @Injectable({
   providedIn: "root",
 })
 export class MakeOutputDataService {
-  constructor() { }
+  constructor() {}
 
-  public makeOutputData(texts: Text[] = []): Text {
+  public makeOutputData(extractedTexts: ExtractedTexts = []): Text {
     let section: Text = "";
 
-    texts.forEach((text) => {
-      section += this.separateByPartition(text);
+    extractedTexts.forEach((extractedText) => {
+      section += extractedText.fileName;
+      section += "\r\n";
+      section += "\r\n";
+      section += this.separateByPartition(extractedText.text);
     });
 
     return section;

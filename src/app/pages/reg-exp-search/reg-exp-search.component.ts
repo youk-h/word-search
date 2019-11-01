@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { CreateWordComponent } from "../../components/create-word/create-word.component";
-import { LoadFoldaComponent } from "../../components/load-folda/load-folda.component";
+import { LoadTextComponent } from "../../components/load-text/load-text.component";
 import { SearchWordComponent } from "../../components/search-word/search-word.component";
 
 import { SearchConditionService } from "../../services/search-condition/search-condition.service";
@@ -13,11 +13,11 @@ import { MakeGraphService } from "../../services/make-graph/make-graph.service";
 @Component({
   selector: "app-reg-exp-search",
   templateUrl: "./reg-exp-search.component.html",
-  styleUrls: ["./reg-exp-search.component.scss"]
+  styleUrls: ["./reg-exp-search.component.scss"],
 })
-export class RegExpSearchComponent implements OnInit {
+export class RegExpSearchPageComponent implements OnInit {
   @ViewChild(CreateWordComponent) createWordComponent: CreateWordComponent;
-  @ViewChild(LoadFoldaComponent) loadFoldaComponent: LoadFoldaComponent;
+  @ViewChild(LoadTextComponent) loadTextComponent: LoadTextComponent;
   @ViewChild(SearchWordComponent) searchWordComponent: SearchWordComponent;
 
   firstFormGroup: FormGroup;
@@ -31,24 +31,24 @@ export class RegExpSearchComponent implements OnInit {
     private searchConditionSvc: SearchConditionService,
     private loadFileSvc: LoadFileService,
     private analyzeTextSvc: AnalyzeTextsService,
-    private makeGraphSvc: MakeGraphService,
-  ) { }
+    private makeGraphSvc: MakeGraphService
+  ) {}
 
   ngOnInit() {
     this.firstFormGroup = this.formBuilder.group({
-      firstCtrl: ["", Validators.required]
+      firstCtrl: ["", Validators.required],
     });
     this.secondFormGroup = this.formBuilder.group({
-      secondCtrl: ["", Validators.required]
+      secondCtrl: ["", Validators.required],
     });
     this.thirdFormGroup = this.formBuilder.group({
-      thirdCtrl: ["", Validators.required]
+      thirdCtrl: ["", Validators.required],
     });
     this.fourthFormGroup = this.formBuilder.group({
-      fourthCtrl: ["", Validators.required]
+      fourthCtrl: ["", Validators.required],
     });
     this.fifthFormGroup = this.formBuilder.group({
-      fifthCtrl: ["", Validators.required]
+      fifthCtrl: ["", Validators.required],
     });
   }
 
@@ -57,8 +57,8 @@ export class RegExpSearchComponent implements OnInit {
     this.searchConditionSvc.reset();
   }
 
-  public onResetLoadFolda() {
-    this.loadFoldaComponent.reset();
+  public onResetLoadFolder() {
+    this.loadTextComponent.reset();
     this.loadFileSvc.reset();
   }
 
@@ -70,7 +70,7 @@ export class RegExpSearchComponent implements OnInit {
 
   public onResetAll() {
     this.onResetSearchCondition();
-    this.onResetLoadFolda();
+    this.onResetLoadFolder();
     this.onResetSearchResult();
   }
 }

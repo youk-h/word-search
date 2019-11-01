@@ -2,36 +2,39 @@
 import { Injectable } from "@angular/core";
 
 import { from, Observable } from "rxjs";
-import { map, mergeMap, toArray } from "rxjs/operators";
+import { map, mergeMap, toArray, tap } from "rxjs/operators";
 
 import * as encoding from "encoding-japanese";
 
 import { Buffer } from "buffer";
-import { LoadFile } from "./load-file.service.i";
+import { LoadFile, LoadResult } from "./load-file.service.i";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class LoadFileService {
   public loadFiles: LoadFile[] = [];
+  public loadResult: LoadResult = { fileNumber: 0, charNumber: 0 };
 
-  constructor() { }
+  constructor() {}
 
-  public loadTextOfEachFiles$(files: File[]): Observable<LoadFile[]> {
+  public loadTextFromEachFiles$(files: File[]): Observable<LoadFile[]> {
     return from(files).pipe(
-      mergeMap((file: File) => this.loadTextOfFile$(file).pipe(
-        map((text) => this.addLoadTextToFile(file, text)),
-      )),
+      mergeMap((file: File) =>
+        this.loadTextFromFile$(file).pipe(
+          map((text) => this.saveLoadedText(file, text))
+        )
+      ),
       toArray(),
-      map((loadFiles: LoadFile[]) => this.loadFiles = loadFiles),
+      map((loadFiles: LoadFile[]) => (this.loadFiles = loadFiles))
     );
   }
 
-  public loadTextOfFile$(file: File): Observable<string> {
+  public loadTextFromFile$(file: File): Observable<string> {
     return from(this.loadArrayBuffer(file)).pipe(
       map((arrayBuffer: ArrayBuffer) => {
         return this.convertArrayBufferToUnicodeString(arrayBuffer);
-      }),
+      })
     );
   }
 
@@ -40,10 +43,13 @@ export class LoadFileService {
     reader.readAsArrayBuffer(file);
 
     return new Promise((resolve, reject) => {
-      reader.onload = () => { resolve(reader.result); };
-      reader.onerror = () => { reject(reader.error); };
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.onerror = () => {
+        reject(reader.error);
+      };
     });
-
   }
 
   convertArrayBufferToUnicodeString(arrayBuffer: ArrayBuffer): string {
@@ -52,8 +58,15 @@ export class LoadFileService {
     return encoding.codeToString(charCodes);
   }
 
-  public addLoadTextToFile(file: File, text: string): LoadFile {
-    return { ...file, loadText: text };
+  public saveLoadedText(file: File, text: string): LoadFile {
+    return {
+      name: file.name.split(".")[0],
+      loadText: text,
+      lastModified: file.lastModified,
+      size: file.size,
+      type: file.type,
+      slice: file.slice,
+    };
   }
 
   public convertObjectToArray(obj: { [key: number]: File }): File[] {
@@ -66,7 +79,18 @@ export class LoadFileService {
     return array;
   }
 
+  public saveLoadResult(loadFiles: LoadFile[]) {
+    this.loadResult = {
+      fileNumber: loadFiles.length,
+      charNumber: loadFiles.reduce(
+        (charNum, file) => charNum + file.loadText.length,
+        0
+      ),
+    };
+  }
+
   public reset() {
     this.loadFiles = [];
+    this.loadResult = { fileNumber: 0, charNumber: 0 };
   }
 }

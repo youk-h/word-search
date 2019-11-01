@@ -1,18 +1,12 @@
-import {
-  FormsModule
-} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 
-import {
-  async,
-  ComponentFixture,
-  TestBed
-} from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import {
   MatFormFieldModule,
   MatIconModule,
   MatButtonModule,
-  MatInputModule
+  MatInputModule,
 } from "@angular/material";
 
 import { DownloadFileComponent } from "./download-file.component";
@@ -78,14 +72,18 @@ describe("DownloadFileComponent", () => {
       components.onDecideFileName(fileName);
 
       // assert
-      expect(ExportFileService.prototype.formatFileName).toHaveBeenCalledWith(fileName);
+      expect(ExportFileService.prototype.formatFileName).toHaveBeenCalledWith(
+        fileName
+      );
     });
 
     it("should set saveFileName formatted when fileName is", () => {
       // arrange
       const fileName = "file";
       const rtnMock = "file.txt";
-      jest.spyOn(ExportFileService.prototype, "formatFileName").mockReturnValue(rtnMock);
+      jest
+        .spyOn(ExportFileService.prototype, "formatFileName")
+        .mockReturnValue(rtnMock);
 
       const expected = rtnMock;
 
@@ -124,7 +122,9 @@ describe("DownloadFileComponent", () => {
       it("should call window.alert and not call makeOutputData when extracteText.length === 0", () => {
         // arrange
         window.alert = jest.fn();
-        jest.spyOn(MakeOutputDataService.prototype, "makeOutputData").mockReturnValue("");
+        jest
+          .spyOn(MakeOutputDataService.prototype, "makeOutputData")
+          .mockReturnValue("");
 
         const expected = "検索後に結果をダウンロードできます";
 
@@ -133,17 +133,22 @@ describe("DownloadFileComponent", () => {
 
         // assert
         expect(window.alert).toHaveBeenCalledWith(expected);
-        expect(MakeOutputDataService.prototype.makeOutputData).not.toHaveBeenCalled();
+        expect(
+          MakeOutputDataService.prototype.makeOutputData
+        ).not.toHaveBeenCalled();
       });
-
     });
 
     describe("make exportData", () => {
       it("should call makeOutputData when extracteText.length !== 0", () => {
         // arrange
         window.alert = jest.fn();
-        extractTextsSvc.extractedTexts = [""];
-        jest.spyOn(MakeOutputDataService.prototype, "makeOutputData").mockReturnValue("");
+        extractTextsSvc.extractedTexts = [
+          { fileName: "file1", text: "1", },
+        ];
+        jest
+          .spyOn(MakeOutputDataService.prototype, "makeOutputData")
+          .mockReturnValue("");
 
         const expected = extractTextsSvc.extractedTexts;
 
@@ -160,10 +165,16 @@ describe("DownloadFileComponent", () => {
       it("should call window.URL.createObjectURL", () => {
         // arrange
         const exportData = "import";
-        extractTextsSvc.extractedTexts = [""];
-        jest.spyOn(MakeOutputDataService.prototype, "makeOutputData").mockReturnValue(exportData);
+        extractTextsSvc.extractedTexts = [
+          { fileName: "file1", text: "1", },
+        ];
+        jest
+          .spyOn(MakeOutputDataService.prototype, "makeOutputData")
+          .mockReturnValue(exportData);
 
-        const expected = new Blob([exportData], { type: "application/x-msdownload" });
+        const expected = new Blob([exportData], {
+          type: "application/x-msdownload",
+        });
 
         // act
         components.onDownload(event);
@@ -175,7 +186,9 @@ describe("DownloadFileComponent", () => {
       it("should set href created", () => {
         // arrange
         const href = "url";
-        extractTextsSvc.extractedTexts = [""];
+        extractTextsSvc.extractedTexts = [
+          { fileName: "file1", text: "1", },
+        ];
         jest.spyOn(window.URL, "createObjectURL").mockReturnValue(href);
 
         const expected = href;

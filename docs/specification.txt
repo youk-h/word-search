@@ -1,8 +1,5 @@
 不具合
-・ダウンロードボタンが、ファイル名を決める前から押せてしまう
-・本のタイトルが無い
 ・検索結果のファイル内で、検索文字が目立たない
 
-
 コード改善点
-・app.component.spec.tsのルーティングのテストを改良できそう
+・app.component.spec.tsのルーティングのテストを改良できそう https://codecraft.tv/courses/angular/unit-testing/routing/
